@@ -84,9 +84,39 @@ textarea {
     overflow: hidden;
     padding: 0.3em;
 }
+
+
+html.accordion-menu-js dt.a-m-t {
+    cursor: pointer;
+    width: 34em;
+}
+
+
+dl.accordion-menu dd.a-m-d .bd {
+    border: 1px solid rgb(170, 170, 170);
+    height: auto;
+    padding: 0.5em 0 0;
+    width: 35em;
+}
+
+dl.accordion-menu dt.a-m-t {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgb(171, 191, 120) !important;
+    border-color: rgb(223, 223, 223) rgb(34, 34, 34) rgb(34, 34, 34) rgb(223, 223, 223);
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(68, 68, 68);
+    margin: 0;
+    padding: 0.3em 1em;
+}
 		</style>
 		
 		<resource:tabView />
+		<resource:accordion skin="default"/>
 	</head>
 	<body>
 		<a href="#show-employee" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -182,22 +212,45 @@ textarea {
                       <richui:tabContent style="overflow:scroll;"> 
 					  
 					   <h1>TECHNICAL SKILLS</h1>
-					  
-					     Platforms = Windows,LINUX <br/> <br/>
-	
-						 Programming = Java,J2EE,Groovy <br/> <br/>
-						
-						 J2EETechnologies = Servlets,JSP,JSF,EJB <br/> <br/>
-						
-						 Frameworks = Struts,Spring,Hibernate,JPA,Groovy,Grails,Flex <br/> <br/>
-						
-						 WebTechnologies = HTML,JavaScript,CSS,jQuery <br/> <br/>
-						
-						 DatabasesTech = Oracle,DB2,MYSQL,PostgreSQL <br/> <br/>
-						
-						 Web_App_servers = WebSphere,WebLogic,Jboss,ApacheTomcat <br/> <br/>
-						
-						 IDE_Tools = MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS
+					   
+					   <richui:accordion>
+    						<richui:accordionItem id="1" caption="Platforms">
+   							     Windows,LINUX
+   						</richui:accordionItem>
+   						
+					   <richui:accordionItem id="2" caption="Programming Languages">
+   							    Java,J2EE,Groovy
+   						</richui:accordionItem>
+					    
+					      <richui:accordionItem id="3" caption="J2EETechnologies">
+   							    Servlets,JSP,JSF,EJB
+   						</richui:accordionItem>
+   						
+   						  <richui:accordionItem id="4" caption="Frameworks">
+   							   Struts,Spring,Hibernate,JPA,Groovy,Grails,Flex
+   						</richui:accordionItem>
+   						
+   						
+   						  <richui:accordionItem id="5" caption="WebTechnologies">
+   							    HTML,JavaScript,CSS,jQuery
+   						</richui:accordionItem>
+   						
+   						
+   						  <richui:accordionItem id="6" caption="DatabasesTechnologies">
+   							     Oracle,DB2,MYSQL,PostgreSQL
+   						</richui:accordionItem>
+   						
+   						
+   						  <richui:accordionItem id="7" caption="Web/App/servers">
+   							   WebSphere,WebLogic,Jboss,ApacheTomcat
+   						</richui:accordionItem>
+   						
+   						
+   						  <richui:accordionItem id="8" caption=" IDE_Tools">
+   							   MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS
+   						</richui:accordionItem>
+   						
+   						</richui:accordion>
 					  
 					  </richui:tabContent>
 
