@@ -1,18 +1,24 @@
 package com.grails.learn
 
 class Employee {
-
+ 
+	Long id
 	Long empid
 	String first_Name
 	String last_Name
-	Long deptno
 	Date joingDate
 	Long bossid
 	Long jobid
 	String employeeName
-	String skillSet
+	//String skillSet
+	Long deptid 
+	String departmentName
+	Long expyear
+	Long expmonth
 	
-	String Platforms = "Windows,LINUX"
+	
+	//static hasMany = [department: Department]
+	/*String Platforms = "Windows,LINUX"
 	
 	String Programming = "Java,J2EE,Groovy"
 	
@@ -26,19 +32,21 @@ class Employee {
 	
 	String Web_App_servers = "WebSphere,WebLogic,Jboss,ApacheTomcat"
 	
-	String IDE_Tools = "MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS"
+	String IDE_Tools = "MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS"*/
 	
-	static transients = ["employeeName","skillSet","Platforms","Programming","J2EETechnologies","Frameworks","WebTechnologies","DatabasesTech","Web_App_servers","IDE_Tools"]
+	static transients = ["employeeName","departmentName"]
 	
 	static mapping ={
 		table "EMPLOYEE"
 		empid column:"EMPID"
 		first_Name column:"FIRSTNAME"
 		last_Name column:"LASTNAME"
-		deptno column:"DEPTNO"
 		bossid column : "BOSS"
 		jobid column : "JOB"
 		joingDate column : "JOING_DATE"
+		deptid column :"DEPTID"
+		expyear column :"EXPYEAR"
+		expmonth column : "EXPMONTH"
 	version false
 	}
 	
@@ -47,4 +55,16 @@ class Employee {
 		first_Name(nullable: false,blank:false)
 		last_Name(nullable:false,blank:false)
     }
+	
+	public String toString() {
+		return [
+			id : id,
+			empid : empid,
+			first_Name:first_Name,
+			last_Name:last_Name,
+			joingDate : joingDate,
+			bossid : bossid,
+			deptid : deptid,
+		].toString()
+	}
 }

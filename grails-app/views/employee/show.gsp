@@ -8,113 +8,143 @@
 		<g:set var="employeeName" value="${employeeInstance?.employeeName}"/>
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 		
-		<style type="text/css">
+  <style type="text/css">
+		.content-form-left {
+			background: none repeat scroll 0 0 #F8F8FF;
+			border-radius: 3px;
+			height: 350px;
+			margin: -15px auto 0 10px;
+			padding: 10px 20px;
+			width: auto;
+		}
 		
-	  .content-form-left {
-         background: none repeat scroll 0 0 rgb(248, 248, 255);
-    	border-radius: 3px;
-    	height: 350px;
-    	margin: 0 auto 0 10px;
-   	    padding: 10px 20px;
-   	    width: 94%;
-	}
-	
-	  .content-form-right {
-         background: none repeat scroll 0 0 rgb(248, 248, 255);
-    	border-radius: 3px;
-    	float: right;
-    	 height: 350px;
-    margin: -370px 24px 0 0;
-    padding: 10px 20px;
-    width: 560px;
-	}
-	
-	.fieldcontain .property-label {
-      float: none;
-       margin-left: 210px;
-	}
-	
-	.fieldcontain .property-value {
-    display: block;
-    margin-left: 33%;
-    margin-top: -18px;
-   }
-   
-   .footer {
-    background: none repeat scroll 0 0 rgb(171, 191, 120);
-    clear: both;
-    color: rgb(0, 0, 0);
-    font-size: 0.8em;
-    margin-top: 2.4em;
-    min-height: 1em;
-    padding: 1em;
-}
-
-fieldset, .property-list {
-    border: medium solid rgb(0, 128, 0);
-    margin: -16.4em -1.75em 2em;
-    position: relative;
-    height: 99%
-}
-
-textarea {
-    height: 26px;
-    overflow: auto;
-    vertical-align: top;
-    width: 183px;
-    text-align: center;
-}
-
-.skillSet{
-  margin:-19% -6% -7% 47%;
-}
-
-.yui-navset .yui-content, .yui-navset .yui-content div {
-    height: 290px;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-
-.buttons {
-    background-color: rgb(239, 239, 239);
-    border: medium none;
-    box-shadow: 0 0 3px 1px rgb(170, 170, 170);
-    margin: 0.8em 0 0;
-    overflow: hidden;
-    padding: 0.3em;
-}
-
-
-html.accordion-menu-js dt.a-m-t {
-    cursor: pointer;
-    width: 34em;
-}
-
-
-dl.accordion-menu dd.a-m-d .bd {
-    border: 1px solid rgb(170, 170, 170);
-    height: auto;
-    padding: 0.5em 0 0;
-    width: 35em;
-}
-
-dl.accordion-menu dt.a-m-t {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: none repeat scroll 0 0 rgb(171, 191, 120) !important;
-    border-color: rgb(223, 223, 223) rgb(34, 34, 34) rgb(34, 34, 34) rgb(223, 223, 223);
-    border-image: none;
-    border-style: solid;
-    border-width: 2px;
-    color: rgb(68, 68, 68);
-    margin: 0;
-    padding: 0.3em 1em;
-}
-		</style>
+		.content-form-right {
+			background: none repeat scroll 0 0 rgb(248, 248, 255);
+			border-radius: 3px;
+			float: right;
+			height: 350px;
+			margin: -370px 24px 0 0;
+			padding: 10px 20px;
+			width: 560px;
+		}
 		
+		.fieldcontain .property-label {
+			float: none;
+			margin-left: 210px;
+		}
+		
+		.fieldcontain .property-value {
+			display: block;
+			margin-left: 33%;
+			margin-top: -18px;
+		}
+		
+		.footer {
+			background: none repeat scroll 0 0 rgb(171, 191, 120);
+			clear: both;
+			color: rgb(0, 0, 0);
+			font-size: 0.8em;
+			margin-top: 2.4em;
+			min-height: 1em;
+			padding: 1em;
+		}
+		
+		fieldset,.property-list {
+			border: medium solid #008000;
+			height: 99%;
+			margin: -18.2em -1.75em 2em;
+			position: relative;
+			width: 82.4em;
+		}
+		
+		.property-list .fieldcontain {
+			list-style: none outside none;
+			margin-left: 17px;
+			overflow: hidden;
+		}
+		
+		textarea {
+			height: 26px;
+			overflow: auto;
+			vertical-align: top;
+			width: 183px;
+			text-align: center;
+		}
+		
+		.skillSet {
+			margin: -19% -6% -7% 47%;
+		}
+		
+		.yui-navset .yui-content,.yui-navset .yui-content div {
+			height: 290px;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+		
+		.buttons {
+			background-color: rgb(239, 239, 239);
+			border: medium none;
+			box-shadow: 0 0 3px 1px rgb(170, 170, 170);
+			margin: 28em 0 0;
+			overflow: hidden;
+			padding: 0.3em;
+			width: 87.4em;
+		}
+		
+		html.accordion-menu-js dt.a-m-t {
+			cursor: pointer;
+			width: 84em;
+		}
+		
+		dl.accordion-menu dd.a-m-d .bd {
+			border: 1px solid rgb(170, 170, 170);
+			height: auto;
+			padding: 0.5em 0 0;
+			width: 35em;
+		}
+		
+		dl.accordion-menu dt.a-m-t {
+			-moz-border-bottom-colors: none;
+			-moz-border-left-colors: none;
+			-moz-border-right-colors: none;
+			-moz-border-top-colors: none;
+			background: none repeat scroll 0 0 rgb(171, 191, 120) !important;
+			border-color: rgb(223, 223, 223) rgb(34, 34, 34) rgb(34, 34, 34)
+				rgb(223, 223, 223);
+			border-image: none;
+			border-style: solid;
+			border-width: 2px;
+			color: rgb(68, 68, 68);
+			margin: 0;
+			padding: 0.3em 1em;
+		}
+		
+		html.accordion-menu-js dt.a-m-t-expand {
+			background: none repeat scroll 0 0 #C0C0C0;
+			border-left-color: #222222;
+			color: #000000;
+			width: 85em;
+		}
+		
+		dl.accordion-menu dd.a-m-d .bd {
+			border: 1px solid #AAAAAA;
+			padding: 0.5em;
+			width: 86em;
+		}
+		
+		.content h1 {
+			border-bottom: 1px solid #CCCCCC;
+			margin: 0.5em 0 0.3em;
+			padding: 0 0.25em;
+		}
+		
+		.errors,.message {
+			font-size: 0.8em;
+			line-height: 1.5;
+			margin: 0.5em 0;
+			padding: 0.25em;
+		}
+</style>
 		<resource:tabView />
 		<resource:accordion skin="default"/>
 	</head>
@@ -127,17 +157,21 @@ dl.accordion-menu dt.a-m-t {
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+	<richui:accordion>
+	   <richui:accordionItem id="1" caption="Employee Information">
 		<div id="show-employee" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[employeeName]" default=" "/></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			<h1>
+			   <g:if test="${flash.message}">
+			     <div class="message" role="status">${flash.message}</div>
+			  </g:if>
+			  <g:else>
+			   <g:message code="default.show.label" args="[employeeName]" default=" "/>
+			  </g:else>
+			</h1>
 			<div id="content_left" class="content-form-left">
-			
 			<div id="" role="">
 			    <img style="width:17%;" src="${resource(dir: 'images', file: 'employeenumbertwo.png')}" alt="Grails"/>
 			 </div>
-			
 			<ol class="property-list employee">
 				<g:if test="${employeeInstance?.empid}">
 				<li class="fieldcontain">
@@ -160,17 +194,17 @@ dl.accordion-menu dt.a-m-t {
 				</li>
 				</g:if>
 				
-				<g:if test="${employeeInstance?.deptno}">
+				<g:if test="${employeeInstance?.departmentName}">
 				<li class="fieldcontain">
-					<span id="deptno-label" class="property-label"><g:message code="employee.deptno.label" default="Department" /></span>
-						<span class="property-value" aria-labelledby="deptno-label"><g:fieldValue bean="${employeeInstance}" field="deptno"/></span>
+					<span id="departmentName-label" class="property-label"><g:message code="employee.departmentName.label" default="Department" /></span>
+						<span class="property-value" aria-labelledby="departmentName-label"><g:fieldValue bean="${employeeInstance}" field="departmentName"/></span>
 				</li>
 				</g:if>
 				
 				<g:if test="${employeeInstance?.joingDate}">
 				<li class="fieldcontain">
 					<span id="joingDate-label" class="property-label"><g:message code="employee.joingDate.label" default="Joined" /></span>
-						<span class="property-value" aria-labelledby="joingDate-label"><g:fieldValue bean="${employeeInstance}" field="joingDate"/></span>
+						<span class="property-value" aria-labelledby="joingDate-label"><g:formatDate format="yyyy-MM-dd" date="${employeeInstance?.joingDate}"/></span>
 				</li>
 				</g:if>
 				
@@ -199,7 +233,7 @@ dl.accordion-menu dt.a-m-t {
 				 
 				  <richui:tabLabel title="Projects" /> </richui:tabLabels>
 
-                        <richui:tabContents> 
+                        <richui:tabContents><%-- 
                         
                         <richui:tabContent> 
                         
@@ -209,6 +243,7 @@ dl.accordion-menu dt.a-m-t {
 
 					 </richui:tabContent>
 
+                      --%>
                       <richui:tabContent style="overflow:scroll;"> 
 					  
 					   <h1>TECHNICAL SKILLS</h1>
@@ -254,13 +289,26 @@ dl.accordion-menu dt.a-m-t {
 					  
 					  </richui:tabContent>
 
-                      <richui:tabContent> This is tab 3. <g:link action="list">A link</g:link> </richui:tabContent> </richui:tabContents> 
+                      <richui:tabContent><%--
+                       This is tab 3. <g:link action="list">A link</g:link>--%>
+                       
+                       <richui:accordion>
+    						<richui:accordionItem id="9" caption="Crrent Project">
+   							     GridPoint
+   						</richui:accordionItem>
+                    </richui:accordion>   
+                       </richui:tabContent> 
+                  </richui:tabContents> 
               </richui:tabView>
 			</div>	
 				
 				</div>
 			</ol>
 			</div>
+		</richui:accordionItem>
+		<richui:accordionItem>
+		</richui:accordionItem>
+	</richui:accordion>
 			<%--<div id="content_right" class="content-form-right">
 			 <div id="empimg"><a href="http://localhost:8080/learngrails"><img style="width: 40%; height: 40%;" src="${resource(dir: 'images', file: 'kumarvayyala.png')}" alt="Grails"/></a></div>
 			</div>

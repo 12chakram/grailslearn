@@ -5,6 +5,27 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'employee.label', default: 'Employee')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		
+		<style type="text/css">
+			.footer {
+			    background: none repeat scroll 0 0 #ABBF78;
+			    clear: both;
+			    color: #000000;
+			    font-size: 0.8em;
+			    margin-top: 0.5em;
+			    min-height: 1em;
+			    padding: 1em;
+			}
+			
+			.buttons {
+		    background-color: #EFEFEF;
+		    border: medium none;
+		    box-shadow: 0 0 3px 1px #AAAAAA;
+		    margin: 3.5em 0 0;
+		    overflow: hidden;
+		    padding: 0.3em;
+		}
+		</style>
 	</head>
 	<body>
 		<a href="#create-employee" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

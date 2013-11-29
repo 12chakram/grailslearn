@@ -32,29 +32,31 @@ class EmployeeController {
     }
 
     def create() {
-        [employeeInstance: new Employee(params)]
+        [employeeInstance: new Employee(params),departmentInstance: new Department()]
     }
 
     def save() {
         def employeeInstance = new Employee(params)
-		
 		if (!employeeInstance.save(flush: true)) {
-			render(view: "create", model: [employeeInstance: employeeInstance])
+			render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department()])
 			return
 		}
-        flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
+		employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
+        flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.employeeName])
         redirect(action: "show", id: employeeInstance.id)
     }
 
     def show(Long id) {
         def employeeInstance = Employee.get(id)
+		def departmentInstance = Department.get(employeeInstance.getDeptid())
         if (!employeeInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
             redirect(action: "list")
             return
         }
-		employeeInstance.setSkillSet("JAVA,J2EE,STRUTS,SERVLETS,SPRING,GRAILS,GRROVY,JAVA SCRIPT,JQUERY,ORACLE,MYSQL,POSTGRES-SQL,S")
-		 employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
+		//employeeInstance.setSkillSet("JAVA,J2EE,STRUTS,SERVLETS,SPRING,GRAILS,GRROVY,JAVA SCRIPT,JQUERY,ORACLE,MYSQL,POSTGRES-SQL,S")
+		  employeeInstance.setDepartmentName(departmentInstance.getDepartmentName())
+		  employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
         [employeeInstance: employeeInstance]
     }
 
