@@ -32,7 +32,8 @@ class UserController {
 
     def save() {
         def userInstance = new User(params)
-        if (!userInstance.save(flush: true)) {
+		//!userInstance.save(flush: true)
+        if (!userService.saveUser(userInstance)) {
             render(view: "create", model: [userInstance: userInstance])
             return
         }

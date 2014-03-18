@@ -7,15 +7,11 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 class EmployeeService {
 
     def getAllEmployees() {
-		
 		Employee.list()
-
     }
 	
 	def save(Employee employeeInstance){
-		
 		Employee.saveAll(employeeInstance)
-		
 	}
 	
 	def ajaxFindEmpIDByEmpID(){

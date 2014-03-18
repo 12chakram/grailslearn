@@ -32,13 +32,29 @@ class EmployeeController {
     }
 
     def create() {
-        [employeeInstance: new Employee(params),departmentInstance: new Department()]
+		Integer max = session.getAttribute("max") 
+		def employeeInstance = session.getAttribute("employeeInstance") 
+		if(max == 2 && employeeInstance!=null){
+			def employeeTechSkillSetInstance = new EmployeeTechSkillSet();
+			[employeeTechSkillSetInstance:employeeTechSkillSetInstance,techInformation:"true"]
+		}else if(max == 1 && employeeInstance != null){
+		   [employeeInstance:employeeInstance,departmentInstance: new Department(),basicInformation:"true"]
+		}else{
+		  [employeeInstance: new Employee(params),departmentInstance: new Department(),basicInformation:"true"]
+		}
+       
     }
 
     def save() {
         def employeeInstance = new Employee(params)
-		if (!employeeInstance.save(flush: true)) {
-			render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department()])
+		boolean saved = false
+		try{
+			saved = employeeInstance.save(flush: true)
+		}catch(Exception exception){
+		   println(exception.getLocalizedMessage())
+		}
+		if (!saved) {
+			render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"true"])
 			return
 		}
 		employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
@@ -125,8 +141,22 @@ class EmployeeController {
 	   }else{
 	     return false
 	   }
+   }
+   
+   // saveForPreview
+   def saveForPreview() {
+	   Integer max
+	   def employeeInstance = new Employee(params)
 	   
-	   
+	   if (employeeInstance.validate()) {
+		  max = Integer.valueOf("2")
+		   session.setAttribute("employeeInstance", employeeInstance)
+		   session.setAttribute("max", max)
+		   redirect(action: "create",)
+	   }else{
+	   render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"true"])
+	   return
+	   }
    }
 	
 }

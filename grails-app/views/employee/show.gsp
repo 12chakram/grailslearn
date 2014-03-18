@@ -144,6 +144,9 @@
 			margin: 0.5em 0;
 			padding: 0.25em;
 		}
+		#1{
+		display: block;
+		}
 </style>
 		<resource:tabView />
 		<resource:accordion skin="default"/>
@@ -227,11 +230,10 @@
 			<div id="divtabView" style="height: 50%; margin-left: 581px;margin-top: -284px;width:52.7%;">	
 				<richui:tabView id="tabView" > 
 				<richui:tabLabels> 
-				<richui:tabLabel selected="true" title="Skill Set" />
-				
-				 <richui:tabLabel title="TECHNICAL SKILLS" />
-				 
-				  <richui:tabLabel title="Projects" /> </richui:tabLabels>
+				    <richui:tabLabel selected="true" title="Skill Set" />
+				    <richui:tabLabel title="TECHNICAL SKILLS" />
+				    <richui:tabLabel title="Projects" />
+		    </richui:tabLabels>
 
                         <richui:tabContents><%-- 
                         

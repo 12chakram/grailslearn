@@ -23,6 +23,7 @@
 		<div class="footer" role="banner"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
+		<g:javascript src="jquery-1.9.1.js"></g:javascript>
 		<r:layoutResources />
 	</body>
 </html>

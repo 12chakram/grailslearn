@@ -6,6 +6,28 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<style type="text/css">
+		
+			.footer {
+			    background: none repeat scroll 0 0 #ABBF78;
+			    clear: both;
+			    color: #000000;
+			    font-size: 0.8em;
+			    margin-top: 5.6em;
+			    min-height: 1em;
+			    padding: 1em;
+			}
+			
+			.userlogo {
+				    background-image: url("../images/kumarvayyala.png");
+				    background-repeat: no-repeat;
+				    background-size: 30px auto;
+				    text-align: right;
+				    width: 100px;
+				    background-color: lime;
+			}
+		
+		</style>
 	</head>
 	<body>
 		<a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -13,11 +35,11 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/user')}"><g:message code="Users"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				  <li><g:link controller="user" action="editProfile" id="${userId}" style="margin-left:86.3%;">${userName}</g:link></li>
+				 <li><g:link class="userlogo" controller="user" action="editProfile" id="${userId}" style="margin-left:88.3%;">${userName}</g:link></li>
 				<li><g:link action="logout" style="margin-left:10.6%;">Logout</g:link></li>
 			</ul>
 		</div>
-		<div id="list-user" class="content scaffold-list" role="main">
+		<div id="list-user" style="min-height: 530px;" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>

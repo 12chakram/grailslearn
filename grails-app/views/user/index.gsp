@@ -141,7 +141,7 @@
 					clear: both;
 					color: #000000;
 					font-size: 0.8em;
-					margin-top: 26.6em;
+					margin-top: 30.6em;
 					min-height: 1em;
 					padding: 1em;
 				}
