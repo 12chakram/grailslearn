@@ -1,5 +1,16 @@
 <%@ page import="com.grails.learn.Employee" %>
 
+<style type="text/css">
+
+label {
+    cursor: pointer;
+    display: inline-block;
+    margin: -39em -8.75em 0 0;
+}
+
+</style>
+
+
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'empid', 'error')} required">
 	<label for="empid">
 		<g:message code="employee.empid.label" default="Empid" />
@@ -63,5 +74,19 @@
           value="${employeeInstance?.deptid}"
           noSelection="${['null':'Assign DepartMent...']}"/>
 </div>
+
+
+<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'deptid', 'error')} ">
+	<label for="file">
+		<g:message code="employee.deptid.avatar" default="Avatar" />
+	</label>
+	 <input type="file" name="avatar" id="avatar" />
+</div>
+
+
+
+<g:if test="${showImg}">
+  <img class="avatar" src="${createLink(controller:'employee', action:'displayEmployeeImg', id:employeeInstance.empid)}" style="margin-left: 61em;width: 22%; margin-top: -20em;" />
+</g:if>
 
 

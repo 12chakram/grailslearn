@@ -26,6 +26,27 @@
 		    overflow: hidden;
 		    padding: 0.3em;
 		}
+		
+		#create-employee h1 {
+		    margin: -1.2em 1em -0.7em;
+		    padding: 0 0.25em;
+		    width: 171px;
+		     color: #48802C;
+		    font-size: 1.25em;
+		    font-weight: normal;
+		     margin: -1.2em 0 0.3em;
+		}
+		
+		#create-employee_skill h1 {
+		    margin: -1.2em 1em -0.7em;
+		    padding: 0 0.25em;
+		    width: 171px;
+		     color: #48802C;
+		    font-size: 1.25em;
+		    font-weight: normal;
+		     margin: -1.2em 0 0.3em;
+		}
+				
 		</style>
 		<resource:tabView />
 	</head>
@@ -46,7 +67,8 @@
 	   <richui:tabContent style="overflow:scroll;"> 
   
 		<div id="create-employee" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<label style="margin-left:183px;color: graytext;">Basic Information</label>
+			<h1><g:message code="default.create.label" args="[entityName]"/></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -57,7 +79,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="saveForPreview" >
+			<g:form action="saveForPreview" enctype="multipart/form-data">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
@@ -68,7 +90,8 @@
 		</div>
 	</richui:tabContent>
 	<richui:tabContent>
-	      <div id="create-employee" class="content scaffold-create" role="main">
+	      <div id="create-employee_skill" class="content scaffold-create" role="main">
+	      <label style="margin-left:183px;color: graytext;">Technical information</label>
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
@@ -82,7 +105,7 @@
 			</g:hasErrors>
 			<g:form action="save" >
 				<fieldset class="form">
-					<g:render template="empTechnicalInformation"/>
+					<g:render template="emptechnicalInformation"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -15,7 +15,8 @@ class Employee {
 	String departmentName
 	Long expyear
 	Long expmonth
-	
+	String avatarType
+	byte[] avatar
 	
 	//static hasMany = [department: Department]
 	/*String Platforms = "Windows,LINUX"
@@ -34,7 +35,7 @@ class Employee {
 	
 	String IDE_Tools = "MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS"*/
 	
-	static transients = ["employeeName","departmentName"]
+	static transients = ["employeeName","departmentName","avatar","avatarType"]
 	
 	static mapping ={
 		table "EMPLOYEE"
@@ -47,13 +48,15 @@ class Employee {
 		deptid column :"DEPTID"
 		expyear column :"EXPYEAR"
 		expmonth column : "EXPMONTH"
-	version false
+	    version false
 	}
 	
     static constraints = {
 		empid(nullable:false,blank:false)
 		first_Name(nullable: false,blank:false)
 		last_Name(nullable:false,blank:false)
+		avatar(nullable:true, maxSize: 16384 /* 16K */) 
+		avatarType(nullable:true)
     }
 	
 	public String toString() {

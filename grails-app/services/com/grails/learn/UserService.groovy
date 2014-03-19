@@ -2,6 +2,7 @@ package com.grails.learn
 
 import com.grails.learn.User
 
+
 class UserService {
 
   
@@ -17,4 +18,6 @@ class UserService {
 		 return false;
 		} 	
    }
+	
+
 }

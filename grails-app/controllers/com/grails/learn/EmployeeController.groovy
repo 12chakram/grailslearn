@@ -12,7 +12,7 @@ class EmployeeController {
 	EmployeeService employeeService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+    static employeeImg
 	
 	
     def index() {
@@ -34,13 +34,16 @@ class EmployeeController {
     def create() {
 		Integer max = session.getAttribute("max") 
 		def employeeInstance = session.getAttribute("employeeInstance") 
-		if(max == 2 && employeeInstance!=null){
-			def employeeTechSkillSetInstance = new EmployeeTechSkillSet();
-			[employeeTechSkillSetInstance:employeeTechSkillSetInstance,techInformation:"true"]
+		if(max == 2 && employeeInstance!=null){ 
+			if(employeeInstance.avatar.inspect()){
+				[employeeInstance:employeeInstance,departmentInstance: new Department(),employeeTechSkillSetInstance: new EmployeeTechSkillSet(),techInformation:"true",showImg:"true"]
+			}else{
+			[employeeInstance:employeeInstance,departmentInstance: new Department(),employeeTechSkillSetInstance: new EmployeeTechSkillSet(),techInformation:"true"]
+			}
 		}else if(max == 1 && employeeInstance != null){
-		   [employeeInstance:employeeInstance,departmentInstance: new Department(),basicInformation:"true"]
+		   [employeeInstance:employeeInstance,departmentInstance: new Department(),employeeTechSkillSetInstance: new EmployeeTechSkillSet(),basicInformation:"true"]
 		}else{
-		  [employeeInstance: new Employee(params),departmentInstance: new Department(),basicInformation:"true"]
+		  [employeeInstance: new Employee(params),departmentInstance: new Department(),employeeTechSkillSetInstance: new EmployeeTechSkillSet(),basicInformation:"true"]
 		}
        
     }
@@ -57,6 +60,7 @@ class EmployeeController {
 			render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"true"])
 			return
 		}
+		
 		employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
         flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.employeeName])
         redirect(action: "show", id: employeeInstance.id)
@@ -152,11 +156,69 @@ class EmployeeController {
 		  max = Integer.valueOf("2")
 		   session.setAttribute("employeeInstance", employeeInstance)
 		   session.setAttribute("max", max)
+		   boolean isSavedImg = upload_avatar();
 		   redirect(action: "create",)
 	   }else{
 	   render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"true"])
 	   return
 	   }
    }
+   
+   
+	private static final okcontents = ['image/png','image/jpeg','image/gif']
+
+	def upload_avatar() { 
+		def employeeInstance = session.getAttribute("employeeInstance")
+
+		// Get the avatar file from the multi-part request 
+		def f = request.getFile('avatar')
+
+		// List of OK mime-types 
+		if (!okcontents.contains(f.getContentType())) {
+			 flash.message = "Avatar must be one of: ${okcontents}"
+			  render(view:'select_avatar', model:[user:user])
+			   return }
+
+		// Save the image and mime type 
+		 employeeInstance.avatar = f.bytes
+		 employeeInstance.avatarType = f.contentType
+		  log.info("File uploaded: $employeeInstance.avatarType")
+
+		// Validation works, will check if the image is too big 
+		if (!employeeInstance.avatar.inspect()) {
+			//redirect(action: "show", id: employeeInstance.id)
+			// render(view:'select_avatar', model:[employeeInstance:employeeInstance]) 
+			return true} 
+		employeeImg = employeeInstance
+		flash.message = "Avatar (${employeeInstance.avatarType}, ${employeeInstance.avatar.size()} bytes) uploaded." 
+		
+	  }
+	
+	/*def displayEmployeeImg = {
+		def img = employeeInstance.avatar
+		
+		response.setHeader('Content-length', img.length)
+		response.contentType = employeeInstance.avatarType
+		response.outputStream << img
+		response.outputStream.flush()
+	}*/
+	
+	
+	
+	def displayEmployeeImg() {
+		/*def avatarUser = User.get(params.id)
+		if (!avatarUser || !avatarUser.avatar || !avatarUser.avatarType) {
+		  response.sendError(404)
+		  return
+		}*/
+		response.contentType = employeeImg.avatarType
+		response.contentLength = employeeImg.avatar.size()
+		OutputStream out = response.outputStream
+		out.write(employeeImg.avatar)
+		out.close()
+	  }
+	
+	
+	
 	
 }

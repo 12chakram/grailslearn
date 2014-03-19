@@ -1,19 +1,23 @@
 <%@ page import="com.grails.learn.EmployeeTechSkillSet" %>
 
-<div class="fieldcontain ${hasErrors(bean:employeeTechSkillSetInstance, field: 'empid', 'error')} required">
-	<label for="empid">
-		<g:message code="employee.empid.label" default="Empid" />
-		<span class="required-indicator">*</span>
-	</label>
-	<%--<g:field name="empid" type="number" value="${employeeInstance.empid}" required="" />--%>
-	<g:remoteField action="checkEmpId" name="empid" paramName="${employeeInstance.empid}" value="${employeeInstance.empid}"  controller="employee"/>
-</div>
+
+<style type="text/css">
+
+label {
+    cursor: pointer;
+    display: inline-block;
+    margin: -39em -8.75em 0 0;
+}
+
+</style>
+
 
 <div class="fieldcontain ${hasErrors(bean: employeeTechSkillSetInstance, field: 'first_Name', 'error')} ">
 	<label for="platforms">
 		<g:message code="employee.platforms.label" default="Platforms" />
 	</label>
-	<g:select id="role" name="platforms" from="${['WINDOWS','LINUX','UNUX','MAC']}"  keys="${['WINDOWS','LINUX','UNUX','MAC'}"  value="${employeeTechSkillSetInstance?.platforms}" noSelection="${['null':'Select Platform']}" style="width: 85px;"/>
+	<g:select id="role" name="platforms" from="${['WINDOWS','LINUX','UNUX','MAC']}"  keys="${[1,2,3,4]}"  
+	value="${employeeTechSkillSetInstance?.platforms}" noSelection="${['null':'Select Platform']}" style="width: 181px;"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeTechSkillSetInstance, field: 'programming', 'error')} ">
@@ -35,7 +39,7 @@
 	<label for="frameworks">
 		<g:message code="employee.JoingDate.label" default="Frameworks" />
 	</label>
-	<g:datePicker name="frameworks" id="joingDate"  value="${employeeTechSkillSetInstance?.frameworks}" precision="day"/>
+	<g:textField  name="frameworks" id="joingDate"  value="${employeeTechSkillSetInstance?.frameworks}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'webTechnologies', 'error')} ">
