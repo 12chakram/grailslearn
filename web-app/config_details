@@ -1,0 +1,11 @@
+
+db name = easyEmp
+
+userName = grailslearn
+
+pass = grailslearn
+
+server : ec2-23-21-211-172.compute-1.amazonaws.com
+
+port : 3306
+

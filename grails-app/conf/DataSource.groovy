@@ -1,8 +1,13 @@
 dataSource {
     pooled = true
     driverClassName = "com.mysql.jdbc.Driver"
-	username = "mylearn"
-    password = "mylearn"
+	//username = "mylearn"
+    //password = "mylearn"
+	
+	username = "grailslearn"
+	password = "grailslearn"
+	
+	
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -14,7 +19,8 @@ environments {
     development {
         dataSource {
             dbCreate = '' // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost/learn"
+            //url = "jdbc:mysql://localhost/learn"
+			url = "jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com/easyEmp"
         }
     }
     test {
