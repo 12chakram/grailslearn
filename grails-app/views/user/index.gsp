@@ -183,7 +183,7 @@ input[type="text"], input[type="password"] {
 	<div class="nav" role="navigation">
 			<ul>
 			   <li><a class="home" href="${createLink(action:'getUsers',controller:'home')}"><g:message code="Users"/></a></li>
-				<li><g:link url="[action:'register',controller:'user']" style="margin-left:85.8%;">Create an account</g:link></li>
+				<li><g:link url="[action:'register',controller:'user']" style="margin-left:84.8%;">Create an account</g:link></li>
 				<li><a href="#" id="login">Login</a> </li>
 			</ul>
 		</div>

@@ -13,6 +13,7 @@ class EmployeeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static employeeImg
+	static imgid
 	
 	
     def index() {
@@ -88,7 +89,10 @@ class EmployeeController {
 
     def show(Long id) {
         def employeeInstance = Employee.get(id)
-		def empSkillInstance = EmployeeTechSkillSet.get(employeeInstance.getId())
+		if(employeeInstance!=null){
+			imgid = employeeInstance.getId()
+		}
+		def empSkillInstance = EmployeeTechSkillSet.findWhere(empid:employeeInstance.getId())
 		def departmentInstance = Department.get(employeeInstance.getDeptid())
         if (!employeeInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
@@ -259,11 +263,11 @@ class EmployeeController {
 		  return
 		}*/
 		
-		def imgEmployee = ImgEmployee.get(params.id)
-		response.contentType = imgEmployee.avatarType
-		response.contentLength = imgEmployee.avatar.size()
+		def imgEmployee = ImgEmployee.findWhere(empid:imgid)
+		response.contentType = imgEmployee.contentType
+		response.contentLength = imgEmployee.data.size()
 		OutputStream out = response.outputStream
-		out.write(imgEmployee.avatar)
+		out.write(imgEmployee.data)
 		out.close()
 	  }
 	

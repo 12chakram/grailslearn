@@ -3,7 +3,7 @@ package com.grails.learn
 class EmployeeTechSkillSet {
  
 	Long id;
-	long empid;
+	Long empid;
 	String platforms;
 	String programming;
 	String j2EETechnologies;

@@ -23,7 +23,7 @@
 				    background-repeat: no-repeat;
 				    background-size: 30px auto;
 				    text-align: right;
-				    width: 100px;
+				    width: 120px;
 				    background-color: lime;
 			}
 		
@@ -35,7 +35,7 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/user')}"><g:message code="Users"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				 <li><g:link class="userlogo" controller="user" action="editProfile" id="${userId}" style="margin-left:88.3%;">${userName}</g:link></li>
+				 <li><g:link class="userlogo" controller="user" action="editProfile" id="${userId}" style="margin-left:84.3%;">${userName}</g:link></li>
 				<li><g:link action="logout" style="margin-left:10.6%;">Logout</g:link></li>
 			</ul>
 		</div>

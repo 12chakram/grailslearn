@@ -174,8 +174,7 @@
 			</h1>
 			<div id="content_left" class="content-form-left">
 			<div id="" role="">
-				 <img class="avatar" src="${createLink(controller:'employee', action:'getEmployeeImg', id:employeeInstance.empid)}" 
-				 style="width:17%;" />
+				 <img class="avatar" src="${createLink(controller:'employee', action:'getEmployeeImg')}" style="width:17%;" />
 			 </div>
 			<ol class="property-list employee">
 				<g:if test="${employeeInstance?.empid}">
