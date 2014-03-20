@@ -32,10 +32,10 @@ class EmployeeTechSkillSet {
 		 platforms column : "PLATFORMS"
 		 programming column : "PROGRAMMING"
 		 j2EETechnologies column : "J2EETECHNOLOGIES"
-		 frameworks column : "WEB_APP_SERVERS"
+		 frameworks column : "FRAMEWORKS"
 		 webTechnologies column : "WEB_TECHNOLOGIES" 
 		 databasesTech column: "DATABASES_TECH"
-		 web_App_servers column :"web_app_servers WEB_APP_SERVERS"
+		 web_App_servers column :"WEB_APP_SERVERS"
 		 iDE_Tools column : "IDE_TOOLS";
 		version false
 	}

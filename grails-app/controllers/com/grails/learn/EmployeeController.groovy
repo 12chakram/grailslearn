@@ -60,17 +60,17 @@ class EmployeeController {
 		boolean isImgEmployeeSaved = false
 		try{
 			if(employeeInstance.save(flush: true)){
-				employeeInstance = employeeInstance.get(employeeInstance.empid)
 				empSkillInstance.empid = employeeInstance.id
 				isEmployeeSaved = true
-			}else if(empSkillInstance.save(flush: true)){
+			}
+			if(empSkillInstance.save(flush: true)){
 			   isEmpSkillSaved = true
 			   
 			   imgEmployee.data = employeeInstance.avatar
 			   imgEmployee.contentType = employeeInstance.avatarType
 			   imgEmployee.empid = employeeInstance.id
-			   
-			}else if(imgEmployee.save(flush: true)){
+			}
+			if(imgEmployee.save(flush: true)){
 			   isImgEmployeeSaved = true
 			}
 		}catch(Exception exception){
@@ -88,6 +88,7 @@ class EmployeeController {
 
     def show(Long id) {
         def employeeInstance = Employee.get(id)
+		def empSkillInstance = EmployeeTechSkillSet.get(employeeInstance.getId())
 		def departmentInstance = Department.get(employeeInstance.getDeptid())
         if (!employeeInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), id])
@@ -95,9 +96,9 @@ class EmployeeController {
             return
         }
 		//employeeInstance.setSkillSet("JAVA,J2EE,STRUTS,SERVLETS,SPRING,GRAILS,GRROVY,JAVA SCRIPT,JQUERY,ORACLE,MYSQL,POSTGRES-SQL,S")
-		  employeeInstance.setDepartmentName(departmentInstance.getDepartmentName())
-		  employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
-        [employeeInstance: employeeInstance]
+		   employeeInstance.setDepartmentName(departmentInstance.getDepartmentName())
+		   employeeInstance.setEmployeeName(employeeInstance.getFirst_Name().toUpperCase()+" "+employeeInstance.getLast_Name().toUpperCase());
+        [employeeInstance: employeeInstance,empSkillInstance:empSkillInstance]
     }
 
     def edit(Long id) {
@@ -250,6 +251,21 @@ class EmployeeController {
 		out.close()
 	  }
 	
+	
+	def getEmployeeImg() {
+		/*def avatarUser = User.get(params.id)
+		if (!avatarUser || !avatarUser.avatar || !avatarUser.avatarType) {
+		  response.sendError(404)
+		  return
+		}*/
+		
+		def imgEmployee = ImgEmployee.get(params.id)
+		response.contentType = imgEmployee.avatarType
+		response.contentLength = imgEmployee.avatar.size()
+		OutputStream out = response.outputStream
+		out.write(imgEmployee.avatar)
+		out.close()
+	  }
 	
 	
 	

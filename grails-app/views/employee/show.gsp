@@ -1,5 +1,6 @@
 
 <%@ page import="com.grails.learn.Employee" %>
+<%@ page import="com.grails.learn.EmployeeTechSkillSet" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -173,7 +174,8 @@
 			</h1>
 			<div id="content_left" class="content-form-left">
 			<div id="" role="">
-			    <img style="width:17%;" src="${resource(dir: 'images', file: 'employeenumbertwo.png')}" alt="Grails"/>
+				 <img class="avatar" src="${createLink(controller:'employee', action:'getEmployeeImg', id:employeeInstance.empid)}" 
+				 style="width:17%;" />
 			 </div>
 			<ol class="property-list employee">
 				<g:if test="${employeeInstance?.empid}">
@@ -252,39 +254,39 @@
 					   
 					   <richui:accordion>
     						<richui:accordionItem id="1" caption="Platforms">
-   							     Windows,LINUX
+    						  <span class="property-value" aria-labelledby="departmentName-label"><g:fieldValue bean="${empSkillInstance}" field="platforms"/></span>
    						</richui:accordionItem>
    						
 					   <richui:accordionItem id="2" caption="Programming Languages">
-   							    Java,J2EE,Groovy
+   							     ${empSkillInstance?.programming}
    						</richui:accordionItem>
 					    
 					      <richui:accordionItem id="3" caption="J2EETechnologies">
-   							    Servlets,JSP,JSF,EJB
+   							      ${empSkillInstance?.j2EETechnologies}
    						</richui:accordionItem>
    						
    						  <richui:accordionItem id="4" caption="Frameworks">
-   							   Struts,Spring,Hibernate,JPA,Groovy,Grails,Flex
+   							   ${empSkillInstance?.frameworks}
    						</richui:accordionItem>
    						
    						
    						  <richui:accordionItem id="5" caption="WebTechnologies">
-   							    HTML,JavaScript,CSS,jQuery
+   							  ${empSkillInstance?.webTechnologies}
    						</richui:accordionItem>
    						
    						
    						  <richui:accordionItem id="6" caption="DatabasesTechnologies">
-   							     Oracle,DB2,MYSQL,PostgreSQL
+   							     ${empSkillInstance?.databasesTech}
    						</richui:accordionItem>
    						
    						
    						  <richui:accordionItem id="7" caption="Web/App/servers">
-   							   WebSphere,WebLogic,Jboss,ApacheTomcat
+   							  ${empSkillInstance?.web_App_servers}
    						</richui:accordionItem>
    						
    						
    						  <richui:accordionItem id="8" caption=" IDE_Tools">
-   							   MyEclipse,Eclipse,SoapUI,SQLDeveloper,Flashbuilder,NeoLoad,Git,SVN,CVS
+   							   ${empSkillInstance?.iDE_Tools}
    						</richui:accordionItem>
    						
    						</richui:accordion>
