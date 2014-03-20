@@ -103,7 +103,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
+			<g:form action="saveEmployee" >
 				<fieldset class="form">
 					<g:render template="emptechnicalInformation"/>
 				</fieldset>

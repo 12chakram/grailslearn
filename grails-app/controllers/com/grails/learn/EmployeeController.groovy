@@ -49,14 +49,34 @@ class EmployeeController {
     }
 
     def save() {
-        def employeeInstance = new Employee(params)
-		boolean saved = false
+		def employeeInstance = session.getAttribute("employeeInstance")
+		def  empSkillInstance  = session.getAttribute("empSkill")
+		
+		def imgEmployee = new ImgEmployee()
+		
+       // def employeeInstance = new Employee(params)
+		boolean isEmployeeSaved = false
+		boolean isEmpSkillSaved = false
+		boolean isImgEmployeeSaved = false
 		try{
-			saved = employeeInstance.save(flush: true)
+			if(employeeInstance.save(flush: true)){
+				employeeInstance = employeeInstance.get(employeeInstance.empid)
+				empSkillInstance.empid = employeeInstance.id
+				isEmployeeSaved = true
+			}else if(empSkillInstance.save(flush: true)){
+			   isEmpSkillSaved = true
+			   
+			   imgEmployee.data = employeeInstance.avatar
+			   imgEmployee.contentType = employeeInstance.avatarType
+			   imgEmployee.empid = employeeInstance.id
+			   
+			}else if(imgEmployee.save(flush: true)){
+			   isImgEmployeeSaved = true
+			}
 		}catch(Exception exception){
 		   println(exception.getLocalizedMessage())
 		}
-		if (!saved) {
+		if (!isEmployeeSaved && !isEmpSkillSaved && !isImgEmployeeSaved) {
 			render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"true"])
 			return
 		}
@@ -151,7 +171,6 @@ class EmployeeController {
    def saveForPreview() {
 	   Integer max
 	   def employeeInstance = new Employee(params)
-	   
 	   if (employeeInstance.validate()) {
 		  max = Integer.valueOf("2")
 		   session.setAttribute("employeeInstance", employeeInstance)
@@ -204,6 +223,19 @@ class EmployeeController {
 	}*/
 	
 	
+	def saveEmployee(){
+		
+		def empSkillInstance = new EmployeeTechSkillSet(params)
+		if (empSkillInstance.validate()) {
+			 session.setAttribute("empSkill", empSkillInstance)
+			 save()
+	   }else{
+	   def employeeInstance = session.getAttribute("employeeInstance")
+	   render(view: "create", model: [employeeInstance: employeeInstance,departmentInstance: new Department(), basicInformation:"false"])
+	   return
+	   }
+	    
+	}
 	
 	def displayEmployeeImg() {
 		/*def avatarUser = User.get(params.id)

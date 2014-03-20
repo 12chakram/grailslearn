@@ -24,7 +24,7 @@ label {
 	<label for="Programming">
 		<g:message code="employee.programming.label" default="Programming" />
 	</label>
-	<g:textField name="Programming" value="${employeeTechSkillSetInstance?.programming}"/>
+	<g:textField name="programming" value="${employeeTechSkillSetInstance?.programming}"/>
 </div>
 
 
