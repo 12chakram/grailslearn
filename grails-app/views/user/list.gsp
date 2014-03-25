@@ -52,7 +52,7 @@
 						
 						<g:sortableColumn property="email" title="${message(code: 'user.email.label', default: 'Email')}" />
 						
-						<g:sortableColumn property="userName" title="${message(code: 'user.userName.label', default: 'User Name')}" />
+						<g:sortableColumn property="username" title="${message(code: 'user.userName.label', default: 'User Name')}" />
 						
 						<g:sortableColumn property="roles" title="${message(code: 'user.roles.label', default: 'Roles')}" />
 					

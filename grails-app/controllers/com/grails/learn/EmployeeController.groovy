@@ -1,11 +1,16 @@
 package com.grails.learn
 
+import grails.plugin.springsecurity.annotation.Secured;
+
+import javax.annotation.security.PermitAll;
+
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.grails.learn.EmployeeService
 
 class EmployeeController {
 	
+	def springSecurityService
 	
 	//def scaffold = true
 	
@@ -15,16 +20,14 @@ class EmployeeController {
     static employeeImg
 	static imgid
 	
-	
+    @Secured(['ROLE_EE_USER'])
     def index() {
-		
 		if(session.user){
 	    employeeService.getAllEmployees()
         redirect(action: "list", params: params)
 		}else{
 		redirect(controller:"user",action:"index")
 		}
-    
 }
 
     def list(Integer max) {
@@ -270,6 +273,11 @@ class EmployeeController {
 		out.write(imgEmployee.data)
 		out.close()
 	  }
+	
+	private currentUser(){
+		
+		 return User.get(springSecurityService.principal.id)
+	}
 	
 	
 	

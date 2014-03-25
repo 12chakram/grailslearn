@@ -178,7 +178,7 @@ a:link, a:visited, a:hover {
 			<ul>
 			   <li><a class="home" href="${createLink(action:'getUsers',controller:'home')}"><g:message code="Users"/></a></li>
 				<li><g:link url="[action:'register',controller:'user']" style="margin-left:85.2%;">Create an account</g:link></li>
-				<li><g:link url="[action:'index',controller:'user']" style="margin-left:25.3%;" id="loginLink">Log in</g:link></li>
+				<li><g:link url="[action:'auth',controller:'login']" style="margin-left:25.3%;" id="loginLink">Log in</g:link></li>
 			</ul>
 		</div>
 	 <g:if test="${flash.message }">
@@ -202,7 +202,7 @@ a:link, a:visited, a:hover {
 			<h2>Register</h2>
 		 <p>
          	<label for="login_field">Login (username)*</label>
-         	<g:textField  id="login_field" tabindex="1" name="userName" required=""/>
+         	<g:textField  id="login_field" tabindex="1" name="username" required=""/>
           </p>
          <p>
            <label for="password_field">Password</label>
@@ -225,7 +225,7 @@ a:link, a:visited, a:hover {
           
             <p>
          	<label for="role">UserRole</label>
-         	  <g:select id="role" name="roles" from="${['admin','user']}" keys="${['admin','user']}" value="${userInstance?.roles}" noSelection="${['null':'Select One...']}"/>
+         	  <g:select id="role" name="roles" from="${['user','admin','publisheruser','publisheradmin']}" keys="${['ROLE_EE_USER','ROLE_EE_ADMIN','ROLE_EE_PUBLISHER_USER','ROLE_EE_PUBLISHER_ADMIN']}" value="${userInstance?.roles}" noSelection="${['null':'Select One...']}"/>
           </p>
           
 		  <p>

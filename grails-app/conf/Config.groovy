@@ -59,6 +59,19 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+//grails.plugins.springsecurity.password.algorithm='SHA-512'
+
+grails.plugin.springsecurity.password.algorithm='bcrypt'
+
+grails.plugin.springsecurity.logout.postOnly =false
+
+/*grails.plugins.springsecurity.auth.loginFormUrl = '/user/index?static=true'*/
+
+grails.plugin.springsecurity.ui.register.emailBody = '...'
+grails.plugin.springsecurity.ui.register.emailFrom = '...'
+grails.plugin.springsecurity.ui.register.emailSubject = '...'
+
+
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -89,3 +102,22 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.grails.learn.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.grails.learn.EeUserEeRole'
+grails.plugin.springsecurity.authority.className = 'com.grails.learn.EeRole'
+
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll'],
+	'/create.gsp':                    ['permitAll']
+]
+
+

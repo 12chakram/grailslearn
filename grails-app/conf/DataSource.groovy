@@ -18,7 +18,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = '' // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = 'update' // one of 'create', 'create-drop', 'update', 'validate', ''
             //url = "jdbc:mysql://localhost/learn"
 			url = "jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com/easyEmp"
         }

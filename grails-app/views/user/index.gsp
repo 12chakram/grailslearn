@@ -200,25 +200,34 @@ input[type="text"], input[type="password"] {
 		<g:else>
 		<div id="page-body">
 		 <div id="content" class="content-form-small" role="main">
-		<g:form action="login">
+		 
+		<form  action="${resource('file': 'j_spring_security_check')}" method='POST' id='loginForm' class='cssform' autocomplete='off'>
 		 <p>
          <%--<label for="login_field">
             UserName or Email:
          </label>
                --%>
-               <g:textField  id="login_field" tabindex="1" name="userName" placeHolder="Username or Email" />
+               <input type='text' class='text_' name='j_username' id='username'  placeHolder="Username or Email"/>
+               
            </p><%--
          <p>
            <label for="password_field">
             Password:
          </label>
          </p>
-		    --%><g:passwordField name="password" id="password_field" tabindex="2" placeHolder="Password" />
+		    --%>
+		       <input type='password' class='text_' name='j_password' id='password' placeHolder="Password"/>
+		       
+		       <p id="remember_me_holder">
+				<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
+				<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>
+			</p>
+		       
 		  <p>
 				<input class="btn blueLight" type="submit" value="Log in" tabindex="3">
 				<g:link url="[action:'register',controller:'user']" class="btn blueLight">Create an account</g:link>
 			</p>
-          </g:form>	
+        </form>
 		  </div>
 		</div>
 		
