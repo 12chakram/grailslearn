@@ -71,6 +71,22 @@ grails.plugin.springsecurity.ui.register.emailBody = '...'
 grails.plugin.springsecurity.ui.register.emailFrom = '...'
 grails.plugin.springsecurity.ui.register.emailSubject = '...'
 
+grails.plugin.springsecurity.ui.register.defaultRoleNames = ['ROLE_EE_USER']
+
+
+grails {
+	mail {
+	  host = "smtp.gmail.com"
+	  port = 465
+	  username = "kumar.v18@gmail.com"
+	  password = "nenuvayyala@12"
+	  props = ["mail.smtp.auth":"true",
+			   "mail.smtp.socketFactory.port":"465",
+			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+			   "mail.smtp.socketFactory.fallback":"false"]
+ 
+ } }
+
 
 environments {
     development {

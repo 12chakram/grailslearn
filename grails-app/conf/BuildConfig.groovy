@@ -64,6 +64,8 @@ grails.project.dependency.resolution = {
 		
 		compile ":spring-security-ui:1.0-RC1"
 		
+		compile ":mail:1.0.4"
+		
 		
     }
 }

@@ -22,6 +22,7 @@ import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.apache.tools.ant.util.LayoutPreservingProperties.Blank;
 import org.springframework.security.access.annotation.Secured
 
+
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
@@ -37,6 +38,7 @@ class RegisterController extends AbstractS2UiController {
 	def mailService
 	def messageSource
 	def saltSource
+	
 
 	def index() {
 		def copy = [:] + (flash.chainedParams ?: [:])
@@ -46,21 +48,14 @@ class RegisterController extends AbstractS2UiController {
 	}
 
 	def register(RegisterCommand command) {
-		
-		println('jjjjjjjjjjjjjjjjjjjjjk')
-		println(command.email)
-		println(command.username)
 
 		if (command.hasErrors()) {
-			println('jjjjjjjjjjjjjjjjjjjjjkjjjj')
 			render view: 'index', model: [command: command]
 			return
 		}
 
 		String salt = saltSource instanceof NullSaltSource ? null : command.username
 		def user = lookupUserClass().newInstance(email: command.email,password:command.password,username: command.username,fullName :command.username,enabled: true)
-		
-		println(user)
 		
 		String userSelectedRole = command.roles
 		
@@ -73,12 +68,7 @@ class RegisterController extends AbstractS2UiController {
 			return
 		}
 		
-		def userRole = lookupRoleClass().newInstance()
-		
-		String role = userSelectedRole.toString().toUpperCase()
-		EeRole = userRole.findByAuthority(role)
-	 	
-		println(EeRole)
+		addRoles(user)
   
 		String url = generateLink('verifyRegistration', [t: registrationCode.token])
 
@@ -232,15 +222,26 @@ class RegisterController extends AbstractS2UiController {
 	protected String evaluate(s, binding) {
 		new SimpleTemplateEngine().createTemplate(s).make(binding)
 	}
-
+	
+	    protected void addRoles(user) {
+		      println('inside addRole class')
+			  def conf = SpringSecurityUtils.securityConfig
+			  user.withTransaction {
+				  def EeUserEeRole = lookupUserRoleClass()
+				  def EeRole = lookupRoleClass()
+				  for (roleName in conf.ui.register.defaultRoleNames){
+					 println(roleName)
+					EeUserEeRole.create user, EeRole.findByAuthority(roleName)
+				  }
+				}
+	    }
+	
 	static final passwordValidator = { String password, command ->
 		if (command.username && command.username.equals(password)) {
 			return 'command.password.error.username'
 		}
 
-		if (!checkPasswordMinLength(password, command) ||
-		    !checkPasswordMaxLength(password, command) ||
-		    !checkPasswordRegex(password, command)) {
+		if (!checkPasswordMinLength(password, command) ||!checkPasswordMaxLength(password, command) ||  !checkPasswordRegex(password, command)) {
 			return 'command.password.error.strength'
 		}
 	}
@@ -314,3 +315,7 @@ class ResetPasswordCommand {
 		password2 validator: RegisterController.password2Validator
 	}
 }
+
+
+
+
