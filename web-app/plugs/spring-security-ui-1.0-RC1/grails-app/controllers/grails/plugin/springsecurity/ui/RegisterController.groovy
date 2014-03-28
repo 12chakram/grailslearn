@@ -39,6 +39,12 @@ class RegisterController extends AbstractS2UiController {
 	def messageSource
 	def saltSource
 	
+	
+	
+	def mymail(){
+		println('jjjjjjjjjjjjjjjjjjj')
+		return
+	}
 
 	def index() {
 		def copy = [:] + (flash.chainedParams ?: [:])
@@ -46,7 +52,7 @@ class RegisterController extends AbstractS2UiController {
 		copy.remove 'action'
 		[command: new RegisterCommand(copy)]
 	}
-
+	
 	def register(RegisterCommand command) {
 
 		if (command.hasErrors()) {
@@ -81,7 +87,13 @@ class RegisterController extends AbstractS2UiController {
 			to command.email
 			from conf.ui.register.emailFrom
 			subject conf.ui.register.emailSubject
-			html body.toString()
+		     //html body.toString()
+			 html g.render(template:"mymail")
+			//html g.render(template:"testhtml")
+		    //html  g.render( template: 'email')
+			//html(view: htmlTemplate, model: args)
+		
+			
 		}
 
 		render view: 'index', model: [emailSent: true]
