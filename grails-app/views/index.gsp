@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
 		<style type="text/css" media="screen">
@@ -81,6 +82,7 @@
 		</style>
 	</head>
 	<body>
+	<facebookAuth:connect permissions="email,user_about_me"/>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<%--<div id="status" role="complementary">
 			<h1>Installed Plugins</h1>

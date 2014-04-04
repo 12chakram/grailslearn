@@ -26,7 +26,7 @@ class EmployeeController {
 	    employeeService.getAllEmployees()
         redirect(action: "list", params: params)
 		}else{
-		redirect(controller:"user",action:"index")
+		redirect(controller:"myuser",action:"index")
 		}
 }
 

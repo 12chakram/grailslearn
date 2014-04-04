@@ -66,6 +66,8 @@ grails.project.dependency.resolution = {
 		
 		compile ":mail:1.0.4"
 		
+		compile "org.grails.plugins:spring-security-facebook:0.15.2-CORE2"
+		
 		
     }
 }
