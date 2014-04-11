@@ -4,6 +4,7 @@ import com.grails.learn.UserService
 
 class HomeController {
 	
+	def springSecurityService
 	
 	UserService userService
 	List<User> users
@@ -29,8 +30,10 @@ class HomeController {
 	}//getUser
    def index(Integer max) { 
 	   params.max = Math.min(max ?: 8, 100)
-	   user = session.getAttribute("logedinUser");
-	   [userInstanceList: User.list(params), userInstanceTotal: Integer.parseInt("11"),userName : user.userName,userId : user.id]
+	  // user = session.getAttribute("logedinUser");
+	   user = springSecurityService.getCurrentUser()
+	   session.setAttribute("logedinUser", user)
+	   [userInstanceList: User.list(params), userInstanceTotal: Integer.parseInt("11"),userName : user.username,userId : user.id]
    }
 	  
 }
