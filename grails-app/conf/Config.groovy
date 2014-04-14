@@ -137,20 +137,24 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 
-grails.plugin.springsecurity.facebook.domain.classname='com.grails.learn.FacebookUser'
+
+facebook.applicationSecret='70b1f3a1849dbbe8b4928b86ece47535'
+facebook.applicationId='1413442685588883'
+
+/*grails.plugin.springsecurity.facebook.domain.classname='com.grails.learn.FacebookUser'
 grails.plugin.springsecurity.facebook.appId='1413442685588883'
-grails.plugin.springsecurity.facebook.secret='70b1f3a1849dbbe8b4928b86ece47535'
+grails.plugin.springsecurity.facebook.secret='70b1f3a1849dbbe8b4928b86ece47535'*/
 
 
 grails.plugin.springsecurity.facebook.taglib.button.text='Login with Facebook'
 
-grails.plugin.springsecurity.facebook.autoCreate.roles=['ROLE_EE_USER','ROLE_FACEBOOK']
+grails.plugin.springsecurity.facebook.autoCreate.roles=['ROLE_EE_USER']
 
 
 grails.serverURL = "http://localhost:6060/learngrails"
 
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
 
-grails.plugin.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check' //it's default value
+//grails.plugin.springsecurity.facebook.filter.processUrl = '/j_spring_security_facebook_check' //it's default value
 
 grails.plugin.springsecurity.facebook.filter.type='redirect,json'

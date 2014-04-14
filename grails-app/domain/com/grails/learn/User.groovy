@@ -6,12 +6,14 @@ class User  extends EeUser{
 	String fullName
 	String email
 	String roles
+	Long fbid
 	
 	static transients = ["cnfpassword","roles"]
 	
 	
 	static constraints = {
-		username blank: false, unique: true
+	    fbid     blank: false,unique: true
+		username blank: false
 		password blank: false
 	}
 }

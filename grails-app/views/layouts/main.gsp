@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
 		<r:layoutResources />
+		<fbg:resources locale="${Locale.getDefault()}" />
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://localhost:8080/learngrails"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>

@@ -3,11 +3,15 @@
 	
 	import com.grails.learn.LoginService
 	import com.grails.learn.UserService
+	import com.grails.learn.EeRole
+	import com.grails.learn.EeUserEeRole;
 	
 	class MyuserController {
 	
 	LoginService loginService
 	UserService userService
+	def facebookGraphService
+	def springSecurityService
 	
 		static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
@@ -166,4 +170,53 @@
 	[userInstance: userInstance, role:userInstance.roles]
 	
 	}
+	
+	
+	def fbUsersave() {
+		
+		/*def user = facebookGraphService.getFacebookData()
+		def suser = facebookGraphService.getFacebookProfile(id:'100000002504592')
+		def detailsUser = facebookGraphService.getDetails(id:'100000002504592')
+		def allfriends = facebookGraphService.getFriends(id:'100000002504592')
+		def src = facebookGraphService.getProfilePhotoSrc(id:'100000002504592')*/
+		/*println(user)
+		 println(suser)
+		 println(detailsUser)
+		 println(allfriends)
+		 println(src)*/
+		
+		def detailsUser = facebookGraphService.getDetails(id:'100000002504592')
+		
+		def checkUser = User.findByFbid(detailsUser.id)
+		
+		if(checkUser == null){
+		println('chekuser is null')
+		def newuser = new User(
+			email: detailsUser.username,
+			password : '**********',
+			username : detailsUser.username,
+			fullName : detailsUser.username,
+			enabled :true,
+			fbid : detailsUser.id
+			).save(failOnError: true)
+			
+		addRoles(newuser)
+		springSecurityService.reauthenticate(detailsUser.username, "password")
+		redirect(controller: "employee", action: "index")
+	}else{
+	   springSecurityService.reauthenticate(detailsUser.username, "password")
+	   redirect(controller: "employee", action: "index")
+	}		
+
+}
+	
+	protected void addRoles(newuser) {
+		newuser.withTransaction {
+			def userRole = EeRole.findByAuthority('ROLE_EE_USER') ?: new EeRole(authority: 'ROLE_EE_USER').save(failOnError: true)
+			EeUserEeRole.create newuser, userRole
+
+		}
+	}
+	
+	
 	}

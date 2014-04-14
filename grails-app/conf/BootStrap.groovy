@@ -33,21 +33,24 @@ class BootStrap {
 			password: springSecurityService.encodePassword('eeadmin'),
 			fullName : 'adminee',
 			email : 'kumarvayyala@outlook.com',
-			enabled: true).save(failOnError: true)
+			enabled: true,
+			fbid:0).save(failOnError: true)
 			
 		def user = User.findByUsername('eeuser') ?: new User(
 			username: 'eeuser',
 			password:'eeuser',
 			fullName : 'useree',
 			email : 'kumar.v18@gmail.com',
-			enabled: true).save(failOnError: true)
+			enabled: true,
+			fbid:1).save(failOnError: true)
 			
 		def publisherUser = User.findByUsername('publisheruser') ?: new User(
 			username: 'publisheruser',
 			password:'publisheruser',
 			fullName : 'publisheruseree',
 			email : 'chakram12@hotmail.com',
-			enabled: true).save(failOnError: true)
+			enabled: true,
+			fbid:2).save(failOnError: true)
 	
 		
 		def publisherAdmin = User.findByUsername('publisheradmin') ?: new User(
@@ -55,7 +58,8 @@ class BootStrap {
 			password:'publisheradmin',
 			fullName : 'publisheradminee',
 			email : 'chakram712@yahoo.com',
-			enabled: true).save(failOnError: true)
+			enabled: true,
+			fbid:4).save(failOnError: true)
 
 	  if (!adminUser.authorities.contains(adminRole)) {
 		   EeUserEeRole.create adminUser, adminRole

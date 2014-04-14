@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
 	
 		<meta name="layout" content="main"/>
@@ -80,9 +80,29 @@
 				}
 			}
 		</style>
+		
+		
+		
+  <script type="text/javascript">
+		function facebookLogin() {
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+					// logged in and connected user, someone you know
+					window.location ="${createLink(controller:'myuser', action:'fbUsersave')}";
+				}
+		 	});
+		 }
+</script>
+		
+		
 	</head>
 	<body>
-	<facebookAuth:connect permissions="email,user_about_me"/>
+	<%--<facebookAuth:connect permissions="email,user_about_me"/>
+	
+	--%><fb:login-button scope="email,publish_stream" onlogin="facebookLogin();" size="large">
+	     <g:message code="auth.login.facebook"/>
+    </fb:login-button>
+	
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<%--<div id="status" role="complementary">
 			<h1>Installed Plugins</h1>
