@@ -40,8 +40,7 @@ body {
 	background: #ffffff;
 	color: #333333;
 	margin: 0 auto;
-	max-width: 99%;
-	min-height: 96%;
+	max-width: 960px;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	   -moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
@@ -113,7 +112,7 @@ img {
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
-	margin-top: 35.6em;
+	margin-top: 1.5em;
 	padding: 1em;
 	min-height: 1em;
 }
@@ -227,7 +226,7 @@ fieldset,
 .fieldcontain label,
 .fieldcontain .property-label {
 	color: #666666;
-	text-align: start;
+	text-align: right;
 	width: 25%;
 }
 
@@ -253,10 +252,10 @@ input, select, textarea {
 	padding: 0.2em 0.4em;
 }
 
-/* select {
+select {
 	padding: 0.2em 0.2em 0.2em 0;
 }
- */
+
 select[multiple] {
 	vertical-align: top;
 }
@@ -355,7 +354,7 @@ fieldset.embedded legend {
 
 .errors ul,
 .message {
-	padding: 8px;
+	padding: 0;
 }
 
 .errors li {
