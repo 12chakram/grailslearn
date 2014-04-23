@@ -16,6 +16,7 @@ package multiplexonline
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.util.GrailsNameUtils
 
@@ -24,6 +25,7 @@ import org.springframework.dao.DataIntegrityViolationException
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
+@Secured(['ROLE_ADMIN'])
 class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 	def saltSource
@@ -114,7 +116,8 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	}
 
 	def search() {
-		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0]
+		def users = User.list()
+		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser : users.size()]
 	}
 
 	def userSearch() {
