@@ -17,11 +17,11 @@
         <!-- /.leftmenu -->
         
          <!-- .Content -->
-              <g:if test="${1==2}"> 
-                 <g:render template="content"></g:render>
+              <g:if test="${showContent=='dashboard'}"> 
+                 <g:render template="dashboard"></g:render>
                </g:if> 
-               <g:if test="${1==1}"> 
-                <g:render template="invite"></g:render>
+               <g:if test="${showContent=='invite'}"> 
+                  <g:render template="invite"></g:render>
                </g:if>
          <!-- /.Content -->
           <!--

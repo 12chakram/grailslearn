@@ -30,6 +30,9 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 	def saltSource
 	def userCache
+	def static existingUser
+	def invitationCodeInstance
+	
 
 	def create() {
 		def user = lookupUserClass().newInstance(params)
@@ -117,7 +120,30 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 	def search() {
 		def users = User.list()
-		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser : users.size()]
+		existingUser = users.size()
+		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser :existingUser,showContent:'dashboard']
+	}
+	
+	def showInvite(){
+		 invitationCodeInstance = new InvitationCode()
+		render(view: "search", model: [enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,
+			existingUser :existingUser,showContent:'invite',invitationCode: invitationCodeInstance])
+	}
+	
+	def sendInvitation(){
+	    invitationCodeInstance = new InvitationCode(params)
+		
+		try{
+	     	invitationCodeInstance.save(flush: true)
+		}catch(Exception e){
+		  println(e)
+		}
+		println(invitationCodeInstance)
+		println(invitationCodeInstance.id)
+		
+		if(1==1){
+			render(view: "search", model: [mailsent:true,emailTo:invitationCodeInstance.emailTo,showContent:'invite',invitationCode:new InvitationCode()])
+		}
 	}
 
 	def userSearch() {

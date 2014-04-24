@@ -153,10 +153,10 @@
                               </a>
                             </li>
                             <li >
-                              <a href="form-validation.html" >
+                             <g:link action="showInvite">
                                 <i class="fa fa-angle-right"></i>
-                                <span>Form validation</span>
-                              </a>
+                                <span>Invite Publisher</span>
+                             </g:link>
                             </li>
                             <li >
                               <a href="form-wizard.html" >
