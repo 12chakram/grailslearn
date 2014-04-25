@@ -32,6 +32,9 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	def userCache
 	def static existingUser
 	def invitationCodeInstance
+	def MOUserService
+	def static currentUser
+	def mailService
 	
 
 	def create() {
@@ -131,9 +134,23 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	}
 	
 	def sendInvitation(){
+		currentUser = MOUserService.getCurrentUser()
 	    invitationCodeInstance = new InvitationCode(params)
-		
+		invitationCodeInstance.emailFrom = currentUser.email
+		invitationCodeInstance.dateCreated = new Date()
 		try{
+			mailService.sendMail {
+				multipart true
+				to invitationCodeInstance.emailTo
+				from currentUser.email
+				subject 'Tell us what you think – 3 minute survey'
+				//html body.toString()
+				//html g.render(template:"mymail",model:[user:currentUser])
+				 // body(view:"/user/mymail", model:[user:currentUser])
+				  html  g.render( template: '/user/mymail')
+				  inline 'phone1', 'image/jpg', new File('./web-app/images/phone-1.png')
+				  inline 'phone2', 'image/jpg', new File('./web-app/images/phone-2.png')
+			}
 	     	invitationCodeInstance.save(flush: true)
 		}catch(Exception e){
 		  println(e)
