@@ -8,7 +8,7 @@
  *
  * http://www.gnu.org/licenses/gpl.txt
  */
-(function($) {
+(function($){
 
   $.fn.featureCarousel = function (options) {
 

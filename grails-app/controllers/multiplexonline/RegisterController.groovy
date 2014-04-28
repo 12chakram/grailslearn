@@ -16,11 +16,14 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 		def mailService
 		def messageSource
 		def saltSource
+		def simpleCaptchaService
 	
 		def index() {
+			println(flash.chainedParams)
 			def copy = [:] + (flash.chainedParams ?: [:])
 			copy.remove 'controller'
 			copy.remove 'action'
+			println(copy)
 			[command: new RegisterCommand(copy)]
 		}
 	
@@ -39,18 +42,31 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 			
 			String userSelectedRole = 'ROLE_END_USER'
 			
-	
-			RegistrationCode registrationCode = springSecurityUiService.register(user, command.password, salt)
+			boolean captchaValid = simpleCaptchaService.validateCaptcha(params.captcha)
+			
+			RegistrationCode registrationCode = null
+			
+			if(captchaValid){
+				 registrationCode = springSecurityUiService.register(user, command.password, salt)
+			}
+		
 			if (registrationCode == null || registrationCode.hasErrors()) {
+				
+				params.remove("dob_day")
+				params.remove("dob_month")
+				params.remove("dob_year")
+				params.remove("_toc")
+				params.remove("dob_minute")
+				params.remove("dob_value")
+				params.remove("struct")
+				
 				// null means problem creating the user
 				flash.error = message(code: 'spring.security.ui.register.miscError')
 				flash.chainedParams = params
 				redirect action: 'index'
 				return
 			}
-			
 			addRoles(user,userSelectedRole)
-	
 			String url = generateLink('verifyRegistration', [t: registrationCode.token])
 	
 			def conf = SpringSecurityUtils.securityConfig
@@ -196,7 +212,8 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 	
 		protected String generateLink(String action, linkParams) {
 			createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
-					controller: 'register', action: action,params: linkParams)
+					controller: 'register', action: action,
+					params: linkParams)
 		}
 	
 		protected String evaluate(s, binding) {

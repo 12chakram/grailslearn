@@ -11,18 +11,107 @@ import multiplexonline.MpoUserRole
 import multiplexonline.Person
 import multiplexonline.User
 
+import org.schema.CreativeRole
+import org.schema.Organization
+import org.schema.SOGenre
+import org.schema.SOMovie
+import org.schema.SOPerson
+import org.schema.Thing
+import org.schema.TimeDuration
+
 class BootStrap {
 	
 	def springSecurityService
 
     def init = { servletContext ->
 		// Load movies from IMDB database.
+		def things = Thing.findAll("from Thing as t where t.type=?",['Movie'], [max: 10, offset: 1])
+		
 		int movieCount;
-		if (Movie.count() == 0) {
+		if (SOMovie.count() == 0) {
 			ArrayList<MovieData> movies = MovieDataLoader.loadMovieData("")
-			/*
+			
+			MediaType mtMovie = MediaType.findByType('Movie');
+			if (mtMovie== null) mtMovie = new MediaType(type: 'Movie').save(failOnError: true)
+			
+			MediaType mtSong = MediaType.findByType('Song');
+			if (mtSong== null) mtSong = new MediaType(type: 'Song').save(failOnError: true)
+			
+			MediaType mtMovieClip = MediaType.findByType('MovieClip');
+			if (mtMovieClip== null) mtMovieClip = new MediaType(type: 'MovieClip').save(failOnError: true)
+	
+			for( m in movies){
+				println String.format("%4s %s", movieCount++, m.title)
+	
+				//TimeDuration td = new TimeDuration(min:m.runningTime).save(failOnError:true)
+				SOMovie movie = new SOMovie(name:m.title, type:'Movie',
+										datePublished: m.indiaReleaseDate,
+										releaseYear: m.releaseYear,
+										headline: m.tagLine,
+										inLanguage: m.language,
+										timeRequired : m.runningTime
+										).save(failOnError:true)
+				// Set the genres
+				for(g in m.genres) {
+					SOGenre genre = SOGenre.findByGenre(g)
+					if (genre == null) genre = new SOGenre(genre:g).save(failOnError: true)
+					movie.addToGenres(genre)
+				}
+				movie.save(failOnError:true)
+				//Set the Director
+				if (m.director != null) {
+//					println("Director: " + m.director)
+					SOPerson p = SOPerson.findByImdbName(m.director)
+					if (p == null) p = new SOPerson(imdbName:m.director).save(failOnError:true)
+					CreativeRole role = CreativeRole.findByRoleAndPerson("Director", p)
+					if (role == null) role = new CreativeRole(role:"Director", person:p).save(failOnError: true)
+					movie.addToCreativeRoles(role).save(failOnError:true)
+				}
+				// Set Actors
+				for (ac in m.actors) {
+//					println("Actor: " + ac)
+					SOPerson p = SOPerson.findByImdbName(ac)
+					if (p == null) p = new SOPerson(imdbName:ac).save(failOnError:true)
+					CreativeRole role = CreativeRole.findByRoleAndPerson("Actor", p)
+					if (role == null) role = new CreativeRole(role:"Actor", person:p).save(failOnError: true)
+					movie.addToCreativeRoles(role).save(failOnError:true)
+				}
+				
+				// Set Actresses
+				for (ac in m.actresses) {
+//					println("Actor: " + ac)
+					SOPerson p = SOPerson.findByImdbName(ac)
+					if (p == null) p = new SOPerson(imdbName:ac).save(failOnError:true)
+					CreativeRole role = CreativeRole.findByRoleAndPerson("Actress", p)
+					if (role == null) role = new CreativeRole(role:"Actress", person:p).save(failOnError: true)
+					movie.addToCreativeRoles(role).save(failOnError:true)
+				}
+				
+				// Set Producers
+				for (prod in m.producers) {
+//					println("Producer: " + prod)
+					SOPerson p = SOPerson.findByImdbName(prod)
+					if (p == null) p = new SOPerson(imdbName:prod).save(failOnError:true)
+					CreativeRole role = CreativeRole.findByRoleAndPerson("Producer", p)
+					if (role == null) role = new CreativeRole(role:"Producer", person:p).save(failOnError: true)
+					movie.addToCreativeRoles(role).save(failOnError:true)
+				}
+				
+				// Set the Production Companies.
+				for (pc in m.productionCompanies) {
+					Organization c = Organization.findBySanitizedName(pc?.asFriendlyUrl())
+					if (c == null) c = new Organization(name:pc).save(failOnError:true)
+					CreativeRole role = CreativeRole.findByRoleAndOrganization("Production", c)
+					if (role == null) role = new CreativeRole(role:"Production", organization:c).save(failOnError: true)
+					movie.addToCreativeRoles(role).save(failOnError:true)
+				}
+			}
+		}
+		/*if (Movie.count() == 0) {
+			ArrayList<MovieData> movies = MovieDataLoader.loadMovieData("")
+			
 			 * Create lookup objects like MediaType
-			 */
+			 
 			MediaType mtMovie = MediaType.findByType('Movie');
 			if (mtMovie== null) mtMovie = new MediaType(type: 'Movie').save(failOnError: true)
 			
@@ -98,7 +187,7 @@ class BootStrap {
 					movie.addToMediaRoles(role).save(failOnError:true)
 				}
 			}
-		}
+		}*/
 		
 		// create MpoRoles into Db
 		

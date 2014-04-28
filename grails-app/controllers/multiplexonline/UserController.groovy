@@ -30,11 +30,10 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 	def saltSource
 	def userCache
+	def MOUserService
 	def static existingUser
 	def invitationCodeInstance
-	def MOUserService
-	def static currentUser
-	def mailService
+	def user
 	
 
 	def create() {
@@ -134,30 +133,18 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	}
 	
 	def sendInvitation(){
-		currentUser = MOUserService.getCurrentUser()
-	    invitationCodeInstance = new InvitationCode(params)
-		invitationCodeInstance.emailFrom = currentUser.email
-		invitationCodeInstance.dateCreated = new Date()
+		invitationCodeInstance = new InvitationCode(params)
+		
 		try{
-			mailService.sendMail {
-				multipart true
-				to invitationCodeInstance.emailTo
-				from currentUser.email
-				subject 'Tell us what you think – 3 minute survey'
-				//html body.toString()
-				//html g.render(template:"mymail",model:[user:currentUser])
-				 // body(view:"/user/mymail", model:[user:currentUser])
-				  html  g.render( template: '/user/mymail')
-				  inline 'phone1', 'image/jpg', new File('./web-app/images/phone-1.png')
-				  inline 'phone2', 'image/jpg', new File('./web-app/images/phone-2.png')
-			}
-	     	invitationCodeInstance.save(flush: true)
+			  user = MOUserService.getCurrentUser()
+			  println(user)
+			 invitationCodeInstance.emailFrom = user.email
+			 invitationCodeInstance.dateCreated = new Date()
+			 invitationCodeInstance.save(flush: true)
+			 
 		}catch(Exception e){
 		  println(e)
 		}
-		println(invitationCodeInstance)
-		println(invitationCodeInstance.id)
-		
 		if(1==1){
 			render(view: "search", model: [mailsent:true,emailTo:invitationCodeInstance.emailTo,showContent:'invite',invitationCode:new InvitationCode()])
 		}
@@ -188,9 +175,9 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 		String passwordExpiredPropertyName = userLookup.passwordExpiredPropertyName
 
 		for (name in [enabled: enabledPropertyName,
-		              accountExpired: accountExpiredPropertyName,
-		              accountLocked: accountLockedPropertyName,
-		              passwordExpired: passwordExpiredPropertyName]) {
+					  accountExpired: accountExpiredPropertyName,
+					  accountLocked: accountLockedPropertyName,
+					  passwordExpired: passwordExpiredPropertyName]) {
 			Integer value = params.int(name.key)
 			if (value) {
 				hql.append " AND u.${name.value}=:${name.key}"
@@ -215,8 +202,8 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 		// add query params to model for paging
 		for (name in ['username', 'enabled', 'accountExpired', 'accountLocked',
-		              'passwordExpired', 'sort', 'order']) {
-		 	model[name] = params[name]
+					  'passwordExpired', 'sort', 'order']) {
+			 model[name] = params[name]
 		}
 
 		render view: 'search', model: model

@@ -21,9 +21,11 @@ class User  extends MpoUser{
 	
 	static constraints = {
 		username blank: false, unique: true
+		email blank: false
 		password blank: false
 		mobile blank: false
 		gender blank :false
 		dob blanck :false
+		fbid blank:false
 	}
 }

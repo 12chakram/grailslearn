@@ -2,12 +2,15 @@ package multiplexonline
 
 import grails.converters.JSON
 import grails.converters.XML
+import org.schema.SOGenre
+import org.schema.SOMovie
+import org.schema.VideoObject
 
 class HomeController {
 
 	def springSecurityService
 	
-    def index() {
+	def index() {
 		
 		if (springSecurityService.isLoggedIn()) {
 			
@@ -22,7 +25,7 @@ class HomeController {
 				redirect(controller: "user", action: "search")
 				
 			}else if(role.equals("ROLE_PUBLISHER_ADMIN")){
-			    redirect(controller: "movie", action: "index")
+				redirect(controller: "movie", action: "index")
 			}
 			else if(role.equals("ROLE_PUBLISHER_USER")){
 				redirect(controller: "movie", action: "index")
@@ -31,16 +34,22 @@ class HomeController {
 		
 		
 		params.max = 12;
+		def comedy = [SOGenre.findByGenre('Comedy')]
+		String queryString = "from org.schema.SOMovie as m where m.isPublished = :published"
+		def featured = SOMovie.findAll(queryString, [published:true], [max:12, sort:'id', order:'desc'])
+		String publishedQuery = "from org.schema.VideoObject"// as mr where (mr.media.mediaKind = 'Movie' or mr.media.mediaKind = 'Song') ";
+		def published = org.schema.VideoObject.findAll(publishedQuery,[],[max:12,sort:"id",order:"desc"])//.collect({it.media})
+		def songs = VideoObject.findAll("from VideoObject as mr where mr.creativeWork.type = 'Song'");
+//		def comedyClips = VideoObject.findAll("from VideoObject as mr where mr.creativeWork.type = 'MovieClip' and mr.creativeWork.genres.genre = 'Comedy'")// in(:genre)", ["genre":comedy])
+		def comedyClips = VideoObject.findAll("from VideoObject as vo join vo.creativeWork as cw join vo.creativeWork.genres as gr WHERE cw.type = 'MovieClip' and gr.genre in ('Comedy')")
+						.flatten().unique().findAll {
+								it.instanceOf(org.schema.VideoObject)
+						}
 		
-		String queryString = "from Movie as m where m.published = :published"
-		def featured = Movie.findAll(queryString, [published:true], [max:12])
-		String publishedQuery = "from MediaRight"// as mr where (mr.media.mediaKind = 'Movie' or mr.media.mediaKind = 'Song') ";
-		def published = MediaRight.findAll(publishedQuery, [max:12])//.collect({it.media})
-		def songs =  MediaRight.findAll("from MediaRight as mr where mr.media.mediaKind = 'Song' ");
-		
+		def promotions = VideoObject.findAll("from VideoObject as mr where mr.creativeWork.type = 'MoviePromotion'")
 		withFormat {
 			html {
-				respond featured, model:[featured:featured, published:published, songs:songs]
+				respond featured, model:[featured:featured, published:published, songs:songs, comedyClips:comedyClips, promotions:promotions]
 			}
 			json {
 				render featured as JSON
