@@ -94,7 +94,7 @@ grails.project.dependency.resolution = {
 		compile ":burning-image:0.5.1"
 		compile ":img-indirect:0.1.1"
 		compile ":cloud-bees:0.6.2"
-		//compile ":mail:1.0.4"
+		compile ":mail:1.0.4"
 		compile ":facebook-graph:0.14"
 		compile ":calendar:1.2.1"
 		compile ":simple-captcha:0.9.9"

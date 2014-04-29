@@ -33,7 +33,9 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	def MOUserService
 	def static existingUser
 	def invitationCodeInstance
-	def user
+	def springSecurityService
+	def static currentUser
+	def mailService
 	
 
 	def create() {
@@ -119,8 +121,34 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 			redirect action: 'edit', id: params.id
 		}
 	}
+	
+	
+		def search(){
+			
+			if (springSecurityService.isLoggedIn()) {
+				
+				def user = springSecurityService.getCurrentUser()
+				
+				def roles = springSecurityService.getPrincipal().getAuthorities()
+				
+				String role = roles.getAt(0).toString()
+				
+				if(role.equals("ROLE_ADMIN")){
+					
+					redirect(action: "dashboard")
+					
+				}else if(role.equals("ROLE_PUBLISHER_ADMIN")){
+					redirect(controller: "movie", action: "index")
+				}
+				else if(role.equals("ROLE_PUBLISHER_USER")){
+					redirect(controller: "movie", action: "index")
+				}
+			}
+			
+			
+			}
 
-	def search() {
+	def dashboard() {
 		def users = User.list()
 		existingUser = users.size()
 		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser :existingUser,showContent:'dashboard']
@@ -128,27 +156,94 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	
 	def showInvite(){
 		 invitationCodeInstance = new InvitationCode()
-		render(view: "search", model: [enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,
-			existingUser :existingUser,showContent:'invite',invitationCode: invitationCodeInstance])
+		def invitations = InvitationCode.list([sort: 'dateCreated',order:'desc',max: 8])
+		render(view: "invite", model: [enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,
+			existingUser :existingUser,invitationCode: invitationCodeInstance,invitedUsers:invitations])
 	}
 	
-	def sendInvitation(){
+	/*def sendInvitation(){
 		invitationCodeInstance = new InvitationCode(params)
 		
 		try{
-			  user = MOUserService.getCurrentUser()
-			  println(user)
-			 invitationCodeInstance.emailFrom = user.email
+			String role
+			 currentUser  = MOUserService.getCurrentUser()
+			 invitationCodeInstance.emailFrom = currentUser.email
 			 invitationCodeInstance.dateCreated = new Date()
 			 invitationCodeInstance.save(flush: true)
+			 
+			 if(invitationCodeInstance.role == 'su'){
+				 role = 'Site User'
+			 }
+			 else if(invitationCodeInstance.role == 'pa'){
+				 role = 'Publisher Admin'
+			 }else if(invitationCodeInstance.role == 'pu'){
+			     role = 'Publisher User'
+			 }
+			 
+			 mailService.sendMail {
+				 multipart true
+				 to invitationCodeInstance.emailTo
+				 from currentUser.email
+				 subject currentUser.fullName+' Invite you as a '+role+' on LearnGrails'
+				 //html body.toString()
+				 //html g.render(template:"mymail",model:[user:currentUser])
+				 // body(view:"/user/mymail", model:[user:currentUser])
+				  html g.render( template: '/user/mymail')
+				 // inline 'phone1', 'image/jpg', new File('./web-app/images/phone-1.png')
+				    inline 'logo', 'image/jpg', new File('./web-app/images/learn_logo.gif')
+				 }
 			 
 		}catch(Exception e){
 		  println(e)
 		}
 		if(1==1){
-			render(view: "search", model: [mailsent:true,emailTo:invitationCodeInstance.emailTo,showContent:'invite',invitationCode:new InvitationCode()])
+			def invitations = InvitationCode.list([sort: 'dateCreated',order:'desc',max: 7])
+			render(view: "invite", model: [mailsent:true,emailTo:invitationCodeInstance.emailTo,showContent:'invite',invitationCode:new InvitationCode(),invitedUsers:invitations])
+		}
+	}*/
+	
+	
+	def sendInvitation(){
+		String role
+		currentUser = MOUserService.getCurrentUser()
+		invitationCodeInstance = new InvitationCode(params)
+		invitationCodeInstance.emailFrom = currentUser.email
+		invitationCodeInstance.dateCreated = new Date()
+		
+		 if(invitationCodeInstance.role == 'su'){
+			 role = 'Site User'
+		 }
+		 else if(invitationCodeInstance.role == 'pa'){
+			 role = 'Publisher Admin'
+		 }else if(invitationCodeInstance.role == 'pu'){
+		     role = 'Publisher User'
+		 }
+		 
+		
+		try{
+			mailService.sendMail {
+				multipart true
+				to invitationCodeInstance.emailTo
+				from currentUser.email
+				 subject currentUser.fullName+' Invite you as a '+role+' on LearnGrails'
+				//html body.toString()
+				//html g.render(template:"mymail",model:[user:currentUser])
+				// body(view:"/user/mymail", model:[user:currentUser])
+				html g.render( template: '/user/mymail')
+				inline 'logo', 'image/jpg', new File('./web-app/images/phone-1.png')
+				//inline 'phone2', 'image/jpg', new File('./web-app/images/phone-2.png')
+			}
+			invitationCodeInstance.save(flush: true)
+		}catch(Exception e){
+			println(e)
+		}
+		if(1==1){
+			def invitations = InvitationCode.list([sort: 'dateCreated',order:'desc'])
+			render(view: "invite", model: [mailsent:true,emailTo:invitationCodeInstance.emailTo,invitationCode:new InvitationCode(),invitedUsers:invitations])
 		}
 	}
+		
+		
 
 	def userSearch() {
 

@@ -179,7 +179,7 @@ facebook.applicationId='1413442685588883'
 
 //grails.plugin.springsecurity.facebook.autoCreate.roles=['ROLE_END_USER']
 
-grails.serverURL = "http://localhost:8080/multiplexonline"
+grails.serverURL = "http://localhost:6060/learngrails"
 
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
 

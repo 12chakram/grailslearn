@@ -15,9 +15,9 @@ environments {
     development {
         dataSource {
             dbCreate =  'update' // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost/mplexonline?useUnicode=yes&characterEncoding=UTF-8"
-            username = "mplexonline"
-            password = "mplexonline"
+            url = "jdbc:mysql://localhost/learnpo?useUnicode=yes&characterEncoding=UTF-8"
+            username = "learn"
+            password = "learn"
         }
     }
     test {

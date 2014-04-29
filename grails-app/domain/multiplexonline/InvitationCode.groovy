@@ -26,7 +26,7 @@ class InvitationCode {
 	String emailTo
 	String role
 	String message
-	String website
+	String website = 'http://localhost:6060/learngrails'
 
 	static mapping = {
 		version false

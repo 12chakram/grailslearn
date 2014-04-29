@@ -7,7 +7,7 @@
   <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
 </head>
-<body>
+<body class="">
   <section class="vbox">
      <g:render template="header"></g:render>
     <section>
@@ -17,12 +17,7 @@
         <!-- /.leftmenu -->
         
          <!-- .Content -->
-              <g:if test="${showContent=='dashboard'}"> 
                  <g:render template="dashboard"></g:render>
-               </g:if> 
-               <g:if test="${showContent=='invite'}"> 
-                  <g:render template="invite"></g:render>
-               </g:if>
          <!-- /.Content -->
           <!--
         <aside class="bg-light lter b-l aside-md hide" id="notes">

@@ -288,9 +288,9 @@
                 <!-- / nav -->
               </div>
             </section>
-            
             <!-- footer -->
-              <g:render template="footer"></g:render>
+             
             <!--footer  -->
           </section>
+           <g:render template="footer"></g:render>
         </aside>

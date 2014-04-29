@@ -56,7 +56,7 @@
 		<r:layoutResources />
 		<fbg:resources locale="${Locale.getDefault()}" />
 	</head>
-	<body>
+	<body class="">
 		<g:layoutBody/>
 		<r:layoutResources />
 	</body>

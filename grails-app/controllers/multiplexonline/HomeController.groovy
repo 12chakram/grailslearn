@@ -22,7 +22,7 @@ class HomeController {
 			
 			if(role.equals("ROLE_ADMIN")){
 				
-				redirect(controller: "user", action: "search")
+				redirect(controller: "user", action: "dashboard")
 				
 			}else if(role.equals("ROLE_PUBLISHER_ADMIN")){
 				redirect(controller: "movie", action: "index")
