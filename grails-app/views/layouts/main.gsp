@@ -16,15 +16,25 @@
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css"><%--
+		
+		 
 		    <script src=" http://ivaynberg.github.io/select2/select2-3.4.1/select2.js"></script>
+		    --%>
 		    <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css">
 		    <link rel="stylesheet" href="${resource(dir: 'css', file: 'select2-bootstrap.css')}" type="text/css">
+		  <link rel="stylesheet" href="${resource(dir: 'css', file: 'timeout-dialog.css')}" />
+		
+		  <g:javascript src="jquery-1_7_2.js"/>
+		  <g:javascript src="jquery-ui.min.js"/>
+		  <g:javascript src="timeout-dialog.js"/>
 		<g:javascript library="application"/>	
 		<g:render template="/layouts/select2Scripts"/>
 		<g:javascript src="jquery.Jcrop.min.js" />
 		<g:javascript src="banner-slide.js" />
+		
+		
+		
 		<script type="text/javascript">
 		  jQuery(function($){
 		
@@ -45,13 +55,26 @@
 			     $('#x2').val(c.x2);
 			     $('#y2').val(c.y2);
 			 }
+			 
+			 
+			 	var maxInactiveInterval = ${grailsApplication.config.learngrails.session.maxInactiveInterval} - 1140; // in seconds
+            var appName = "${grailsApplication.metadata['app.name']}";
+   				$.timeoutDialog({
+   	   				timeout: maxInactiveInterval, 
+   	   				countdown: 55, 
+   	   				logout_redirect_url:  ' /' + appName + '/user/sessionTimeout',
+   	   			    keep_alive_url:' /' + appName + '/user/updateSession',  
+   	   				restart_on_yes: true
+   	   			});
 		
 		</script>
+		
+		
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.Jcrop.css')}" type="text/css" />
 		<g:layoutHead/>	
 		<r:layoutResources />
-		<fbg:resources locale="${Locale.getDefault()}" />
-	</head>
+		<%--<fbg:resources locale="${Locale.getDefault()}" />
+	--%></head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
 		<g:layoutBody/>

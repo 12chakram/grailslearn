@@ -20,16 +20,10 @@
 	    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 	    <link rel="stylesheet" href="${resource(dir: 'js/calendar/', file: 'bootstrap_calendar.css')}" type="text/css">
 	    <link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
-         
-  
-	  <!--[if lt IE 9]>
-	    <script src="js/ie/html5shiv.js"></script>
-	    <script src="js/ie/respond.min.js"></script>
-	    <script src="js/ie/excanvas.js"></script>
-	  <![endif]-->
-
-
-		<g:javascript src="jquery.min.js" />
+	     <link rel="stylesheet" href="${resource(dir: 'css', file: 'timeout-dialog.css')}" />
+	      <g:javascript library="jquery" />
+	     <g:javascript src="timeout-dialog.js"/>
+	     <g:javascript src="jquery.min.js" />
 		<!-- Bootstrap -->
 		<g:javascript src="bootstrap.js" />
 		<!-- App -->
@@ -52,6 +46,30 @@
 		<g:javascript src="/parsley/parsley.min.js"/>
         <g:javascript src="/parsley/parsley.extend.js"/>
         <g:javascript src="/slimscroll/jquery.slimscroll.min.js"/>
+       
+         
+        <g:layoutHead />
+  	
+  		 <script type="text/javascript">
+        	var maxInactiveInterval = ${grailsApplication.config.admin.session.maxInactiveInterval} - 1140; // in seconds
+            var appName = "${grailsApplication.metadata['app.name']}";
+   				$.timeoutDialog({
+   	   				timeout: maxInactiveInterval, 
+   	   				countdown: 55, 
+   	   				logout_redirect_url:  ' /' + appName + '/user/sessionTimeout',
+   	   			    keep_alive_url:' /' + appName + '/user/updateSession',  
+   	   				restart_on_yes: true
+   	   			});
+        </script>
+        
+	  <!--[if lt IE 9]>
+	    <script src="js/ie/html5shiv.js"></script>
+	    <script src="js/ie/respond.min.js"></script>
+	    <script src="js/ie/excanvas.js"></script>
+	  <![endif]-->
+
+
+		
 		
 		<r:layoutResources />
 		<fbg:resources locale="${Locale.getDefault()}" />

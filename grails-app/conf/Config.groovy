@@ -228,3 +228,4 @@ grails {
 simpleCaptcha {
 	chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 }
+learngrails.session.maxInactiveInterval = 1200
