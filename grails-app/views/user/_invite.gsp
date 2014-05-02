@@ -78,7 +78,7 @@
                             <strong class="h5"><g:formatDate format="yyyy-MM-dd" date="${it.dateCreated}" style="SHORT"/></strong><br>
                             <small class="label bg-light">pm</small>
                           </div>
-                          <a href="#" class="h4" style="font-size: 17px;">${it.emailTo}</a>
+                           <g:link action="userDetails" controller="user" id="${it.id}" class="h4" style="font-size: 17px;">${it.emailTo}</g:link>
                           <small class="block"><a href="#" class="">Invite As a</a> <span class="label label-success">${it.role}</span></small>
                         </div>
                       </article>

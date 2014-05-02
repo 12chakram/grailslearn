@@ -57,7 +57,7 @@
 			 }
 			 
 			 
-			 	var maxInactiveInterval = ${grailsApplication.config.learngrails.session.maxInactiveInterval} - 1140; // in seconds
+			 	var maxInactiveInterval = ${grailsApplication.config.learngrails.session.maxInactiveInterval} - 10; // in seconds
             var appName = "${grailsApplication.metadata['app.name']}";
    				$.timeoutDialog({
    	   				timeout: maxInactiveInterval, 

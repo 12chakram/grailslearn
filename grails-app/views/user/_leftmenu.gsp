@@ -23,12 +23,12 @@
                 <nav class="nav-primary hidden-xs">
                   <ul class="nav">
                     <li  class="active">
-                      <a href="index.html"   class="active">
+                      <g:remoteLink action="showDashboard" controller="user" class="active" update="content ">
                         <i class="fa fa-dashboard icon">
                           <b class="bg-danger"></b>
                         </i>
-                        <span>Workset</span>
-                      </a>
+                        <span>Dashboard</span>
+                     </g:remoteLink>
                     </li>
                     <li >
                       <a href="#layout"  >

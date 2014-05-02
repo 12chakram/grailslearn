@@ -154,6 +154,13 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser :existingUser,showContent:'dashboard']
 	}
 	
+	def showDashboard() {
+		def users = User.list()
+		existingUser = users.size()
+		[enabled: 0, accountExpired: 0, accountLocked: 0, passwordExpired: 0,existingUser :existingUser,showContent:'dashboard']
+	}
+	
+	
 	def showInvite(){
 		 invitationCodeInstance = new InvitationCode()
 		def invitations = InvitationCode.list([sort: 'dateCreated',order:'desc',max: 8])
@@ -378,5 +385,10 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 	protected List sortedRoles() {
 		lookupRoleClass().list().sort { it.authority }
+	}
+	
+	def userDetails(){
+		
+		println(params.id)
 	}
 }
