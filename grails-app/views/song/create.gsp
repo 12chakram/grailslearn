@@ -4,6 +4,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'song.label', default: 'Song')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<g:render template="/layouts/select2/creativeRoles"/>
 	</head>
 	<body>
 		<a href="#create-song" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

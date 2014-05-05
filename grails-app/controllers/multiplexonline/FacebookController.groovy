@@ -22,12 +22,12 @@ class FacebookController {
 			[id:229321243755229, name:ROYAL CHALLENGER BANGLORE], [id:190313434323691, name:Indian Cricket Team]], 
 		last_name:Kumar, gender:male
 		*/
-		println(command.birthday)
+		/*println(command.birthday)
 		println(command.link)
 		println(command.first_name)
 		println(command.last_name)
 		println(command.gender)
-		println(command.name)
+		println(command.name)*/
 	
 		def newdate = new Date().parse("dd/MM/yyyy",command.birthday)
 		
@@ -47,10 +47,10 @@ class FacebookController {
 		    addRoles(mpofacebookUser)
 			facebookGraphService.publishWall("Welcome to multiplexOnline")
 			springSecurityService.reauthenticate(mpofacebookUser.username,command.id.toString())
-			redirect(controller:"movie",action:"index")
+			redirect(controller:"home",action:"index")
 		}else{
 		    springSecurityService.reauthenticate(user.username,command.id.toString())
-		    redirect(controller:"movie",action:"index")
+		    redirect(controller:"home",action:"index")
 		}	
 	}
 	

@@ -15,9 +15,9 @@ environments {
     development {
         dataSource {
             dbCreate =  'update' // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost/leangrails?useUnicode=yes&characterEncoding=UTF-8"
-            username = "learn"
-            password = "learn"
+            url = "jdbc:mysql://localhost/mplexonline?useUnicode=yes&characterEncoding=UTF-8"
+            username = "mplexonline"
+            password = "mplexonline"
         }
     }
     test {

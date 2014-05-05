@@ -50,11 +50,11 @@
 .datepicker td,
 .datepicker th {
   text-align: center;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 .datepicker td.day:hover {
   background: #eeeeee;
@@ -165,7 +165,7 @@
 }
 .datepicker th.next,
 .datepicker th.prev {
-  font-size: 21px;
+  font-size: 16px;
 }
 .datepicker thead tr:first-child th {
   cursor: pointer;
@@ -179,4 +179,8 @@
   cursor: pointer;
   width: 16px;
   height: 16px;
+}
+
+thead th {
+    background: none repeat scroll 0 0 #90EE90 !important;
 }

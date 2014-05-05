@@ -19,4 +19,9 @@ class MoviePromotion extends Media {
     static constraints = {
 		
     }
+	
+	@Override
+	String getControllerName() {
+		return "MoviePromotion"
+	}
 }

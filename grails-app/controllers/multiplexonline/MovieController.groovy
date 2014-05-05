@@ -1,13 +1,11 @@
 package multiplexonline
 
 import static org.springframework.http.HttpStatus.*
-import grails.plugin.springsecurity.annotation.Secured
+import grails.converters.JSON
 import grails.transaction.Transactional
-
 import java.awt.image.BufferedImage
-
 import javax.imageio.ImageIO
-
+import java.lang.Float
 import org.apache.commons.io.FileUtils
 
 @Transactional(readOnly = true)
@@ -16,7 +14,6 @@ class MovieController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def burningImageService
 	
-	@Secured(['ROLE_PUBLISHER_ADMIN','ROLE_ADMIN','ROLE_PUBLISHER_USER'])
     def index(Integer max, Integer releaseYear, String language, String title) {
         params.max = Math.min(max ?: 10, 100)
 		println( "" + releaseYear + "" + language)

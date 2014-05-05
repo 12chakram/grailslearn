@@ -1,505 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Home</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/demo.css" type="text/css" media="all">
-    
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <script src="js/script.js" type="text/javascript"></script>
-		<!--[if lt IE 8]>
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-        	<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-    </div>
-	<![endif]-->
-    <!--[if lt IE 9]>
-   		<script type="text/javascript" src="js/html5.js"></script>
-        <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
-	<![endif]-->
-	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/custom.css" type="text/css"/>
+<script type="text/javascript" src="js/jquery1.9.min.js"></script>
+<script type="text/javascript" src="js/jquery.featureCarousel.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<script type="text/javascript" src="js/jquery.liquidcarousel.js"></script>
+<title>title</title>
+
 </head>
-<body id="page1">
-      
-<!--==============================header=================================-->
-            <header>
-            	<div class="main">
-                	<div class="wrapper margin-bot">
-                    	
-                        <form id="form-2" method="post" enctype="multipart/form-data">
-                            <fieldset>
-							
-                                <label class="d-block wrapper">
-									<a href="#" class="button-1 login_button fleft reg2" onClick="document.getElementById('form-2').submit()"><span><span>Log in</span></span></a>
-									<a href="#" class="button-1 login_button fleft reg2" onClick="document.getElementById('form-2').submit()"><span><span>Register</span></span></a>
-                                    <span class="input-1">
-                                        <input name="search" value="">
-                                    </span>
-                                    <a href="#" class="button-1 fleft reg2" onClick="document.getElementById('form-2').submit()"><span><span>Search</span></span></a>
-                                </label>
-                            </fieldset>
-                        </form>
-                        <div class="clear"></div>
+<body>
+<div class="container">
+	<div class="sub_container">
+	<div class="page_banner">
+        <header class="main_header">
+                <a href="index.html"> <aside  class="logo"></aside></a>
+                
+                <aside class="search_area">
+                	
+                	<input type="search" placeholder="Search"/>
+                    <input type="button" class="search_button" />
+					<div class="search_fields">
+						<div class="fields">Title <input type='textbox'/></div>
+						<div class="fields">language <select><option>Telugu</option><option>English</option></select></div>
+						<div class="fields"><input type="checkbox" checked='checked'/> Genre</div>
+						<div class="fields">Release Year <input type='textbox'/></div>
+					</div>
+                </aside>
+                <div class="login_links">
+                    	<a id="login_trigger" href="#modal">Sign in</a>
                     </div>
-                    <div class="bg-1">
-                        <div class="logo-box">
-                           <a class="logo" href="index.html">Frank burton</a>
-                        </div>
-                        <nav>
-                            <ul class="menu1">
-                                <li class="active"><span><a href="index.html">Home</a></span></li>
-                                <li><span><a href="index-1.html">Reviews</a></span></li>
-                                <li><span><a href="index-2.html">News</a></span></li>
-                                <li><span><a href="index-3.html">channels</a></span></li>
-                                <li><span><a href="index-4.html">tv archive</a></span></li>
-                                <li class="last8"><span><a href="index-5.html">Contacts</a></span></li>
-                            </ul>
-                            <div class="clear"></div>
-                        </nav>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="head-box1">
-                    	<nav class="head-box2">
-                            <ul class="sf-menu">
-                                <li><a href="more.html">Action</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Adventure</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Animation</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Comedy</a>
-                                    <ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Crime</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Documentary</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Drama</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="more.html">Fantasy</a>
-                                	<ul>
-                                        <li><a class="first" href="more.html">Adipiscing elit</a></li>
-                                        <li><a href="more.html">Proin dictum </a></li>
-                                        <li><a href="more.html">Elementum velit</a></li>
-                                        <li><a href="more.html">Consequat ante</a></li>
-                                        <li><a href="more.html">Lorem ipsum dolor</a></li>
-                                        <li><a href="more.html">Sit amet</a></li>
-                                        <li><a class="last8" href="more.html">Consectetuer</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div class="clear"></div>
-                        </nav>
-                    </div>
-                    <div id="slide">			  	
-							<!-- slider -->
-							<div class="slider">
-								<ul class="items">
-									<li><img src="images/slide-1.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>
-									<li><img src="images/slide-2.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>
-									<li><img src="images/slide-3.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>
-									<li><img src="images/slide-4.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>
-									<li><img src="images/slide-5.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>
-									<li><img src="images/slide-6.jpg" alt="" /><div class="banner"><span><strong><i>collection of movies</i> for the entertainment lovers</strong> <a class="button3" href="more.html">Shop Now!</a></span></div></li>									
-								</ul>
-							</div>
-							<!-- slider end -->	
-                            <div class="pag">
-                                <div class="img-pags">
-                                  <ul>
-                                    <li><a href="more.html"><img src="images/slide-1-thumb.jpg" alt="" width="80" height="60" /></a></li>
-                                    <li><a href="more.html"><img src="images/slide-2-thumb.jpg" alt="" /></a></li>
-                                    <li><a href="more.html"><img src="images/slide-3-thumb.jpg" alt="" /></a></li>
-                                    <li><a href="more.html"><img src="images/slide-4-thumb.jpg" alt="" /></a></li>
-                                    <li><a href="more.html"><img src="images/slide-5-thumb.jpg" alt="" /></a></li>
-                                    <li><a href="more.html"><img src="images/slide-6-thumb.jpg" alt="" /></a></li>
-                                  </ul>  
-                                </div>								
-                            </div>
-						</div>		
-				</div>
-            </header>
-            <!--==============================content================================-->
-    <section id="content">
-        <div class="main">
-            <div class="container_12">
-                <div class="wrapper">
-                    <article class="grid_12">
-                    	<div id="tabs1">
-                            <ul class="tabs">
-                                <li><a href="#tab1">Top Movies</a></li>
-                                <li class="last7"><a class="last8" href="#tab2">New Movies</a></li>
-                            </ul>
-                              <div class="tab_container">
-                              <div id="tab1" class="tab_content">
-                                <div class="tab-bg">  
-                                      <article class="grid_2 alpha">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img1.jpg" alt=""></figure>
-                                                <strong>Chernobyl Diaries (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img2.jpg" alt=""></figure>
-                                                <strong>OC87</strong>
-                                                <p class="p7">Ipsum dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img3.jpg" alt=""></figure>
-                                                <strong>Think Like a Man (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img4.jpg" alt=""></figure>
-                                                <strong>Men in Black III (2012)</strong>
-                                                <p class="p7">Sit amet conse ctetur lorem</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img5.jpg" alt=""></figure>
-                                                <strong>The Lucky One (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet set</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img4.jpg" alt=""></figure>
-                                                <strong>Men in Black III (2012)</strong>
-                                                <p class="p7">Sit amet conse ctetur lorem</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img5.jpg" alt=""></figure>
-                                                <strong>The Lucky One (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet set</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  
-                                      <article class="grid_2 omega">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img6.jpg" alt=""></figure>
-                                                <strong>The Hunger Games</strong>
-                                                <p class="p7">Magna set dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img3.jpg" alt=""></figure>
-                                                <strong>Think Like a Man (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  <article class="grid_2 alpha">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img1.jpg" alt=""></figure>
-                                                <strong>Chernobyl Diaries (2012)</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <div class="clear"></div>    	
-                                </div>
-                              </div>   
-                              <div id="tab2" class="tab_content">
-                                <div class="tab-bg">  
-                                      <article class="grid_2 alpha">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img6.jpg" alt=""></figure>
-                                                <strong>The Hunger Games</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img5.jpg" alt=""></figure>
-                                                <strong>The Lucky One (2012)</strong>
-                                                <p class="p7">Ipsum dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                     
-                                     
-                                      <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img4.jpg" alt=""></figure>
-                                                <strong>Men in Black III (2012)</strong>
-                                                <p class="p7">Magna set dolor sit amet conse ctetur</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									   <article class="grid_2">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img2.jpg" alt=""></figure>
-                                                <strong>OC87</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-									  <article class="grid_2 omega">
-                                      		<div class="page1-box1">
-                                            	<figure class="page1-img1"><img src="images/page1-img2.jpg" alt=""></figure>
-                                                <strong>OC87</strong>
-                                                <p class="p7">Lorem ipsum dolor sit amet conse</p>
-                                                <a class="button-2" href="more.html"><span><span>Read more</span></span></a>
-                                            </div>
-                                      </article>
-                                      <div class="clear"></div>    	
-                                </div>
-                              </div>                           
-                              </div>
-                          </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <div class="main p11">
-        	<div class="container_12">
-            	<div class="wrapper p8">
-                	<article class="grid_4">
-                   		 <h5 class="p9 margin-bot1 main_h5">Latest Reviews</h5>
-                        	<div class="scroll">
-                            	<div>
-                                    <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img7.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Action</span>
-                                            <a class="link1" href="more.html">Snow White and the Huntsman (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img8.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Comedy </span>
-                                            <a class="link1" href="more.html">Piranha 3DD (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img9.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Musical</span>
-                                            <a class="link1" href="more.html">Battlefield America (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img7.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Action</span>
-                                            <a class="link1" href="more.html">Snow White and the Huntsman (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                               <div> 
-                                   <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img8.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Comedy</span>
-                                            <a class="link1" href="more.html">Piranha 3DD (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                               <div>
-                                    <div class="page1-box2">
-                                        <figure class="page1-img2"><img src="images/page1-img9.jpg" alt=""></figure>
-                                        <div class="extra-wrap">
-                                            <span>Musical</span>
-                                            <a class="link1" href="more.html">Battlefield America (2012)</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="link3" href="more.html">See all</a>
-                    </article>
-                    <article class="grid_4">
-                    	<h5 class="main_h5">Latest News</h5>
-                        <div class="page1-box3">
-                        	<span> Jul 14, 2012</span>
-                            <div class="clear"></div>
-                            <a class="link1 color-w" href="more.html">Lorem ipsum dolor sit amet conse ctetur</a>
-                            <p>Dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                        </div>
-                        <div class="page1-box3">
-                        	<span> Jul 14, 2012</span>
-                            <div class="clear"></div>
-                            <a class="link1 color-w" href="more.html">Dolor sit amet conse ctetur</a>
-                            <p>Dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                        </div>
-                        <div class="page1-box3 last2">
-                        	<span> Jul 14, 2012</span>
-                            <div class="clear"></div>
-                            <a class="link1 color-w" href="more.html">Ipsum dolor sit amet conse ctetur</a>
-                            <p>Dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                        </div>
-                        <a class="link3" href="more.html">See all</a>
-                    </article>
-                    <article class="grid_4">
-                    	<h5 class="p10 main_h5">trailers</h5>
-                        <div class="page1-box4">                        
-                        	<figure class="page1-img3">                            
-                              <a href="video/video_AS3.swf?width=512&amp;height=288&amp;fileVideo=intro06.flv" class="lightbox-image lightbox-video" data-gal="prettyPhoto[pp_gal]">
-                                  <img src="images/page1-img10.jpg" alt="">
-                                  <strong class="img-box"></strong>
-                              </a>
-                          </figure>
-                          <div class="extra-wrap">
-                              <span>Horror </span>
-                              <a class="link1" href="more.html">Prometheus (2012)</a>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                        <div class="page1-box4">
-                        	<figure class="page1-img3">
-                              <a href="video/video_AS3.swf?width=512&amp;height=288&amp;fileVideo=intro06.flv" class="lightbox-image lightbox-video" data-gal="prettyPhoto[pp_gal]">
-                                  <img src="images/page1-img11.jpg" alt="">
-                                  <strong class="img-box"></strong>
-                              </a>
-                          </figure>
-                          <div class="extra-wrap">
-                              <span>Animation</span>
-                              <a class="link1" href="more.html">Madagascar 3: <br />Europe's Most Wanted (2012)</a>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                        <div class="page1-box4 last3">
-                        	<figure class="page1-img3">
-                              <a href="video/video_AS3.swf?width=512&amp;height=288&amp;fileVideo=intro06.flv" class="lightbox-image lightbox-video" data-gal="prettyPhoto[pp_gal]">
-                                  <img src="images/page1-img12.jpg" alt="">
-                                  <strong class="img-box"></strong>
-                              </a>
-                          </figure>
-                          <div class="extra-wrap">
-                              <span>Comedy</span>
-                              <a class="link1" href="more.html">Lola Versus (2012) </a>
-                          </div>
-                          <div class="clear"></div>
-                        </div>
-                        <a class="link3" href="more.html">See all</a>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
+        </header>
+        <section class="banner_section">
+        	<div>
+            	<div id="banner-slide">
+
+                    <div class="carousel-container">
     
-        <!--==============================footer================================-->
-            <footer>
-            	<div class="main p12">
-                	<div class="container_12">
-                        <div class="wrapper">
-                            <article class="grid_12">
-                            	<div class="page-foot">
-                                	<ul class="menu2">
-                                        <li><a class="active" href="index.html">Home</a></li>
-                                        <li><a href="index-1.html">Reviews</a></li>
-                                        <li><a href="index-2.html">News</a></li>
-                                        <li><a href="index-3.html">channels</a></li>
-                                        <li><a href="index-4.html">tv archive</a></li>
-                                        <li><a href="index-5.html">Contacts</a></li>
-                                    </ul>                                                                    
-                                    <div class="page-foot2">
-                                    	&copy; 2012&nbsp;  &nbsp; <a href="index-6.html">Privacy Policy</a> 
-                                    </div>
-                                    <a class="foot-link" href="index.html"></a>  
-                                    <div class="foot"><!--{%FOOTER_LINK} --></div>
-                                    <div class="clear"></div>                   
-                                     </div>                                    
-                            </article>
+                          <div id="carousel">
+                            <div class="carousel-feature">
+                              <a href="#"><img class="carousel-image" src="images/banner1.jpg"/></a>
+                      		</div>
+                            <div class="carousel-feature">
+                              <a href="#"><img class="carousel-image" src="images/banner2.jpg"/></a>
+                      		</div>
+                            <div class="carousel-feature">
+                              <a href="#"><img class="carousel-image" src="images/banner3.jpg"/></a>
+                      		</div>
+                            <div class="carousel-feature">
+                              <a href="#"><img class="carousel-image" src="images/banner4.jpg"/></a>
+                      		</div>
+                            <div class="carousel-feature">
+                              <a href="#"><img class="carousel-image" src="images/banner5.jpg"/></a>
+                      		</div>
+                          </div>
+                        
+                          <div id="carousel-left"></div>
+                          <div id="carousel-right"></div>
                         </div>
-                    </div>
+                  </div>
+            	<!-- <img src="images/banner1.png" width="1400" height="300"> -->
+                <div class="bottom_shade"></div>
+            </div>
+        </section>
+    </div>
+			<section class='sort_container'>
+				<div class="list_title">Sort by: <span class="sort_by active">Featured</span> 
+								<span class="sort_by">Popularity</span> 
+								<span class="sort_by">Recent</span> 
+								<span class="sort_by">A to Z</span></div>
+								<div class="mode_details">
+								clip type <select><option>Movies</option></select>
+								</div>
+			</section>
+								
+    <section class="movie_list_section">
+    	<header><span class="list_title">Free Movies</span></header>
+			<div id="liquid1" class="liquid movies_list">
+                <span class="previous"></span>
+                <div class="wrapper">
+                    <ul>
+                        <li><a href="movie_detail_view.html" title="image 01"><img src="images/movie_clip1.jpg"  /></a>
+                        	<div class="description">
+                                <div class="title1">Movie Name</div>
+                                <div class="title2">Telugu</div>
+                                <div class="VideoTime">1.12.23</div>
+                            </div>
+                        </li>
+                        <li><a href="movie_detail_view.html" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="movie_detail_view.html" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="movie_detail_view.html" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="movie_detail_view.html" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="#" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="#" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                       
+                        
+                        
+                    </ul>
                 </div>
+                <span class="next"></span>
+            </div>						
+       
+    </section>
+	<section class="movie_list_section">
+    	<header><span class="list_title">Paid Movies</span></header>
+									
+        <div id="liquid2" class="liquid movies_list">
+                <span class="previous"></span>
+                <div class="wrapper">
+                    <ul>
+                        <li><a href="movie_detail_view.html" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="movie_detail_view.html" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="movie_detail_view.html" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="movie_detail_view.html" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="movie_detail_view.html" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="#" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                         <li><a href="#" title="image 01"><img src="images/movie_clip1.jpg"  /></a></li>
+                        <li><a href="#" title="image 02"><img src="images/movie_clip2.jpg"/></a></li>
+                        <li><a href="#" title="image 03"><img src="images/movie_clip3.jpg" /></a></li>
+                        <li><a href="#" title="image 04"><img src="images/movie_clip4.jpg" /></a></li>
+                       
+                        
+                        
+                    </ul>
+                </div>
+                <span class="next"></span>
+            </div>
+    </section>
+    </div>
+  </div>
+ <footer>
+ 	<div class="footer_top_menu">
+ 	<div class="tab_section">
+    	<ul>
+        	<li class="heading"><a href="#">Watch Movies</a></li>
+            <li><a href="#">Top Picks</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">TV</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">99 Movie of the Day</a></li>
+            <li><a href="#">2 for 2 Nights</a></li>
+
+        </ul>
+    </div>
+    <div class="tab_section">
+    	<ul>
+        	<li class="heading"><a href="#">Support</a></li>
+            <li><a href="#">Need Help?</a></li>
+            <li><a href="#">Your Cases</a></li>
+            <li><a href="#">Forums</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Redeem Movie Credits</a></li>
+          </ul>
+    </div>
+    <div class="tab_section">
+    	<ul>
+        	<li class="heading"><a href="#">My Account</a></li>
+            <li><a href="#">Account Information</a></li>
+            <li><a href="#">Payment Information</a></li>
+            <li><a href="#">Balance & History</a></li>
+            <li><a href="#">Manage Devices</a></li>
+            
+        </ul>
+    </div>
+ </div>
+	<ul class="footer_menu">
+                                        <li><a class="active" href="#">Home</a></li>
+                                        <li><a href="#">Reviews</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">channels</a></li>
+                                        <li><a href="#">tv archive</a></li>
+                                        <li><a href="#">Contacts</a></li>
+                                    </ul>
+            	<div class="copyright">Multiplex Online © 2012 Privacy Policy</div>
             </footer>
+            
+            <div id="modal" class="popupContainer" style="display:none;">
+                                            <header class="popupHeader">
+                                                <span class="header_title">Login</span>
+                                                <span class="modal_close">x</span>
+                                            </header>
+                                            
+                                            <section class="popupBody">
+                                                <!-- Social Login -->
+                                                                                    
+                                                <!-- Username & Password Login form -->
+                                                <div class="user_login">
+                                                    <form>
+                                                        <label>Email / Username</label>
+                                                        <input type="text" />
+                                                        <br />
+                                    
+                                                        <label>Password</label>
+                                                        <input type="password" />
+                                                        <br />
+                                    
+                                                        <div class="checkbox">
+                                                            <input id="remember" type="checkbox" />
+                                                            <label for="remember">Remember me on this computer</label>
+                                                        </div>
+                                    
+                                                        <div class="action_btns">
+                                                            <div class="one_half"><a  href="register_user.html" class="btn"><i class="fa fa-angle-double-left"></i> Register </a></div>
+                                                            <div class="one_half last"><a href="#" class="btn btn_blue">Login</a></div>
+                                                        </div>
+                                                      <div class="Share_social_network">
+                                                        	<div class="title">Or login with</div>
+                                                            <div class="fb_icon"></div>
+                                                            <div class="g_plus_icon"></div>
+                                                      </div>
+                                                    </form>
+                                                    <a href="forgot_password.html" class="forgot_password">Forgot password?</a>
+                                                </div>
+                                      </section>
+                                        </div>
+                                        
+                                        
+  <script type="text/javascript">
+$("#login_trigger").leanModal({top : 100, overlay : 0.6, closeButton: ".modal_close" });
+
+	$(function(){
+		// Calling Login Form
+		$("#login_trigger").click(function(){
+			$(".social_login").hide();
+			$(".user_login").show();
+			return false;
+		});
+
+		// Going back to Social Forms
+		$(".modal_close").click(function(){
+			$(".user_login").hide();
+			$(".user_register").hide();
+			$(".social_login").show();
+			$(".header_title").text('Login');
+			return false;
+		});
+
+	})
+</script>
 </body>
 </html>

@@ -1,36 +1,12 @@
+<%@ page import="org.schema.CreativeWork" %>
 <!DOCTYPE html>
-<html lang="en" class="app">
-<head>
-  <meta charset="utf-8" />
-  <meta name="layout" content="user">
-  <title>Notebook | Web Application</title>
-  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-</head>
+<html>
+	<head>
+		<meta name="layout" content="portal/mainh">
+		<g:set var="entityName" value="${message(code: 'media.label', default: 'Media')}" />
+		<title><g:message code="default.list.label" args="[entityName]" /></title>
+	</head>
 <body>
-  <section class="vbox">
-     <g:render template="header"></g:render>
-    <section>
-      <section class="hbox stretch">
-        <!-- .leftmenu -->
-            <g:render template="leftmenu"></g:render>
-        <!-- /.leftmenu -->
-        
-         <!-- .Content -->
-              <g:if test="${showContent=='dashboard'}"> 
-                 <g:render template="dashboard"></g:render>
-               </g:if> 
-               <g:if test="${showContent=='invite'}"> 
-                  <g:render template="invite"></g:render>
-               </g:if>
-         <!-- /.Content -->
-          <!--
-        <aside class="bg-light lter b-l aside-md hide" id="notes">
-          <div class="wrapper">Notification</div>
-        </aside>
-        -->
-      </section>
-    </section>
-  </section>
+   <g:render template="invite"></g:render>
 </body>
 </html>

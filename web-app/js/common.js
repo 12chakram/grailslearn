@@ -1,5 +1,6 @@
+
 $(document).ready(function() {
-    
+
 var carousel = $("#carousel").featureCarousel({
           // include options like this:
           // (use quotes only for string values, and no trailing comma after last option)
@@ -19,6 +20,8 @@ var carousel = $("#carousel").featureCarousel({
         $("#but_next").click(function () {
           carousel.next();
         });
+		
+		   
       });
 	  
 	  

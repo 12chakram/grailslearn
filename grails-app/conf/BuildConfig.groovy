@@ -7,7 +7,7 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
-/*grails.project.fork = [
+grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
 
@@ -19,7 +19,7 @@ grails.project.source.level = 1.6
     war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
-]*/
+]
 
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
@@ -85,18 +85,15 @@ grails.project.dependency.resolution = {
 		
 		compile ":db-reverse-engineer:0.5"
 		compile ":webflow:2.0.8.1"
-		compile ":jquery:1.11.0"
-
 		compile ':spring-security-core:2.0-RC2'
 		compile ":spring-security-ui:1.0-RC1"
-		//compile ":spring-security-facebook:0.15.2-CORE2"
 		compile ":seofriendly-urls:1.0.2"
 		compile ":burning-image:0.5.1"
 		compile ":img-indirect:0.1.1"
 		compile ":cloud-bees:0.6.2"
-		compile ":mail:1.0.4"
 		compile ":facebook-graph:0.14"
 		compile ":calendar:1.2.1"
 		compile ":simple-captcha:0.9.9"
+		compile ":mail:1.0.4"
   }
 }
