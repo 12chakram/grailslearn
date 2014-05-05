@@ -103,7 +103,7 @@
 </head>
 <body class="" id="signinbody">
 <section id="content">
-          <a class="navbar-brand block" href="index.html">Multiplex Online</a>
+          <a class="navbar-brand block" href="index.html">Grails Learn</a>
 		<div class="main padder">
 			<div class="row">
 				<div class="col-lg-4 col-lg-offset-4 m-t-large">
@@ -111,6 +111,7 @@
 						<header class="panel-heading text-center"> Sign up </header>
 						   <g:form action="register" controller="signup"
 						    method='POST' id='loginForm' class="panel-body wrapper-lg" autocomplete='off' data-validate="parsley">
+						    <g:hiddenField name="roles" value="${command?.roles}"/>
 							<div class="form-group">
 								<label class="control-label">User Name</label> 
 								   <input type="text" name="username" value="${command?.username}" class="form-control" placeholder="eg. Your name or company" data-required="true" />
@@ -194,8 +195,8 @@
 							<p class="text-muted text-center">
 								<small>Already have an account?</small>
 							</p>
-							<a href="http://flatfull.com/themes/first/signin.html"
-								class="btn btn-white btn-block">Sign in</a>
+							<g:link action="auth" controller="login"
+								class="btn btn-default btn-block">Sign in</g:link>
 						</g:form>
 					</section>
 				</div>

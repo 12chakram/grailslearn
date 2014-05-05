@@ -45,13 +45,13 @@
 <body class="" id="signinbody">
   <section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
     <div class="container aside-xxl">
-      <a class="navbar-brand block" href="index.html">Multiplex Online</a>
+      <a class="navbar-brand block" href="index.html">Grails Learn</a>
       <section class="panel panel-default bg-white m-t-lg">
         <header class="panel-heading text-center">
           <strong>Sign in</strong>
         </header>
-        	<g:if test='${flash.message}'>
-			<div class='login_message'>${flash.message}</div>
+        <g:if test='${flash.message}'>
+			<div style="color: #B94A48;padding: 15px;font-size: 85%;">${flash.message}</div>
 		</g:if>
         <form action='${postUrl}' method='POST' id='loginForm' class="panel-body wrapper-lg" autocomplete='off' data-validate="parsley">
           <div class="form-group">
@@ -82,7 +82,7 @@
           --%>
           <div class="line line-dashed"></div>
           <p class="text-muted text-center"><small>Do not have an account?</small></p>
-          <g:link  class="btn btn-default btn-block" action="auth" controller="login">Create an account</g:link>
+          <g:link  class="btn btn-default btn-block" action="index" controller="signup">Create an account</g:link>
         </form>
       </section>
     </div>

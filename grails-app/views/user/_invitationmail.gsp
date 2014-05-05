@@ -23,7 +23,7 @@
     	<div class="header_tag">Just one more step...</div>
         <div class="sub_header_tag">${emailTo}</div>
         <div class="content_tag">Click the big button below to activate your MailChimp account</div>
-        <div class="button">Activate Account </div>
+        <a href="${url}" class="button">Activate Account</a>
     </div>
     <div class="footer">
     	© 2001-2014 MailChimp®, All Rights Reserved. <br />

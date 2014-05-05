@@ -21,30 +21,36 @@ class SignupController extends grails.plugin.springsecurity.ui.RegisterControlle
 		def simpleCaptchaService
 		def RegisterController
 	
-		def index() {
-			
-			params.remove("dob_day")
-			params.remove("dob_month")
-			params.remove("dob_year")
-			params.remove("_toc")
-			params.remove("dob_minute")
-			params.remove("dob_value")
-			params.remove("struct")
-			
-			def copy = [:] + (flash.chainedParams ?: [:])
-			copy.remove 'controller'
-			copy.remove 'action'
+	def index() {
+
+		String token = params.t
+		removeDateParams(params)
+
+		def copy = [:] + (flash.chainedParams ?: [:])
+		copy.remove 'controller'
+		copy.remove 'action'
+
+		if(token==null || token==''){
 			[command: new RegisterCommand(copy)]
+		}else{
+			def invitationCode = token ? InvitationCode.findByToken(token) : null
+			if (!invitationCode) {
+				flash.error = message(code: 'spring.security.ui.resetPassword.badCode')
+				redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
+				return
+			}
+			def command = new RegisterCommand(copy)
+			command.email = invitationCode.emailTo
+			command.username = invitationCode.inviteename
+			command.roles = invitationCode.role
+			[command:command]
 		}
+	}
 	
 		def register(RegisterCommand command) {
-			params.remove("dob_day")
-			params.remove("dob_month")
-			params.remove("dob_year")
-			params.remove("_toc")
-			params.remove("dob_minute")
-			params.remove("dob_value")
-			params.remove("struct")
+			
+			removeDateParams(params)
+
 			if (command.hasErrors()) {
 				render view: 'index', model: [command: command]
 				return
@@ -55,21 +61,14 @@ class SignupController extends grails.plugin.springsecurity.ui.RegisterControlle
 				fullName :command.username,mobile :command.mobile,gender:command.gender,dob:command.dob,fbid:fbid,
 				enabled: true)
 			
-			String userSelectedRole = 'ROLE_END_USER'
+			String userSelectedRole = command.roles?  command.roles :'ROLE_END_USER'
 			boolean captchaValid = simpleCaptchaService.validateCaptcha(params.captcha)
 			RegistrationCode registrationCode = null
 			if(captchaValid){
 				 registrationCode = springSecurityUiService.register(user, command.password, salt)
 			}
 			if (registrationCode == null || registrationCode.hasErrors()) {
-				params.remove("dob_day")
-				params.remove("dob_month")
-				params.remove("dob_year")
-				params.remove("_toc")
-				params.remove("dob_minute")
-				params.remove("dob_value")
-				params.remove("struct")
-				
+				removeDateParams(params)
 				// null means problem creating the user
 				flash.error = message(code: 'spring.security.ui.register.miscError')
 				flash.chainedParams = params
@@ -91,7 +90,7 @@ class SignupController extends grails.plugin.springsecurity.ui.RegisterControlle
 				//html body.toString()
 				html g.render(template:"mymail",model:[user:user])
 			}
-			
+			springSecurityService.reauthenticate user.username
 			redirect(controller: "home", action: "index",model:[emailSent: true])
 			//render view: 'index',  model: [emailSent: true]
 		}
@@ -258,20 +257,26 @@ class SignupController extends grails.plugin.springsecurity.ui.RegisterControlle
 		}
 		
 		protected void addRoles(user,userSelectedRole) {
-			println('inside addRole class')
+			
 			def conf = SpringSecurityUtils.securityConfig
 			user.withTransaction {
 				def MpoUserRole = lookupUserRoleClass()
 				def MpoRole = lookupRoleClass()
 				  def roleName = userSelectedRole
-				  println(roleName)
-				  println(userSelectedRole)
 				  MpoUserRole.create user, MpoRole.findByAuthority(roleName)
-				
 			  }
 		}
 		
-}
+		protected void removeDateParams(params) {
+			params.remove("dob_day")
+			params.remove("dob_month")
+			params.remove("dob_year")
+			params.remove("_toc")
+			params.remove("dob_minute")
+			params.remove("dob_value")
+			params.remove("struct")
+		}
+    }
 	
 	class RegisterCommand {
 			String username

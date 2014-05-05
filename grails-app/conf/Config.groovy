@@ -90,7 +90,7 @@ grails.converters.default.pretty.print
 grails.views.javascript.library="jquery"
 
 // Image Indirect
-imageindirect.basePath='/Users/sai/posters'
+imageindirect.basePath='kumar/home/kv/posters'
 
 
 environments {
@@ -181,7 +181,7 @@ facebook.applicationId='1413442685588883'
 
 //grails.plugin.springsecurity.facebook.autoCreate.roles=['ROLE_END_USER']
 
-grails.serverURL = "http://localhost:8080/multiplexonline"
+grails.serverURL = "http://localhost:6060/grailslearn"
 
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
 

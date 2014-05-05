@@ -44,8 +44,8 @@ public class MovieDataLoader {
 //		extractActors();
 //		extractActresses();
 		
-		extractMovieData();
-		FileOutputStream fos = new FileOutputStream(new File("/Users/sai/software/imdb/out/MovieDetails.list"));
+		//extractMovieData();
+		FileOutputStream fos = new FileOutputStream(new File("C:/Users/kumar.vayyala/git/learngrails-05-05/grailslearn/bootstrapdata/MovieDetails.list"));
 		Iterator<Entry<String, MovieData>> iterator = moviesAll.entrySet().iterator();
 		while(iterator.hasNext()) {
 		   fos.write((iterator.next().getValue().toString() + "\n").getBytes());
@@ -58,7 +58,7 @@ public class MovieDataLoader {
 	public static ArrayList<MovieData> loadMovieData(String fileName) throws Exception {
 		System.out.println("Loading movie Data");
 		ArrayList<MovieData> list = new ArrayList<MovieData>();
-		File file = new File("/Users/sai/software/imdb/out/MovieDetails.list");
+		File file = new File("C:/Users/kumar.vayyala/git/learngrails-05-05/grailslearn/bootstrapdata/MovieDetails.list");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -150,7 +150,7 @@ public class MovieDataLoader {
 	}
 	
 
-	public static HashMap<String, MovieData>extractMovieData() throws Exception {
+	/*public static HashMap<String, MovieData>extractMovieData() throws Exception {
 		extractLanguageData("Telugu", moviesTelugu);
 //		extractLanguageData("Hindi", moviesHindi);
 		extractLanguageData("Tamil", moviesTamil);
@@ -507,7 +507,7 @@ public class MovieDataLoader {
 		System.out.println("No of Movies found = " + foundCount + " " + moviesAll.size() );
 		System.out.println("ACTRESSES END");
 		return;	
-	}
+	}*/
 }
 
 

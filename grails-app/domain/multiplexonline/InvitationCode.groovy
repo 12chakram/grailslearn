@@ -20,6 +20,7 @@ package multiplexonline
 class InvitationCode {
 
 	String username
+	String inviteename
 	String token = UUID.randomUUID().toString().replaceAll('-', '')
 	Date dateCreated
 	String emailFrom

@@ -1,5 +1,37 @@
+<%@ page import="org.schema.CreativeWork" %>
 <%@ page import="multiplexonline.InvitationCode" %>
-            <section class="scrollable padder">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="layout" content="portal/mainh">
+		<g:set var="entityName" value="${message(code: 'media.label', default: 'Media')}" />
+		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<script type="text/javascript">
+			function setMessage(selectdrole){
+
+			if(selectdrole == 'SITE_USER'){
+				selectdrole = 'Site User'
+			 }
+			 else if(selectdrole == 'ROLE_PUBLISHER_ADMIN'){
+				selectdrole = 'Publisher Admin'
+			 }
+			 else if(selectdrole == 'ROLE_PUBLISHER_USER'){
+					selectdrole = 'Publisher User'
+		      }
+			 else if(selectdrole == 'ROLE_ADMIN'){
+					selectdrole = 'Admin User'
+		      }
+		      else{
+		    	  selectdrole  = 'End User'
+			   }
+			  var yourname = $("#username").val().toUpperCase();
+			  var msg = yourname +" Invite you as a " + selectdrole.toUpperCase() + " on Grails Learn";
+			  document.getElementById("message").value=msg;
+			}
+		</script>
+	</head>
+ <body>
+	 <section class="scrollable padder">
               <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
                 <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="#">UI kit</a></li>
@@ -22,18 +54,22 @@
                       <div class="panel-body">
                         <p class="text-muted">Need support? please fill the fields below.</p>                        
                           <div class="form-group pull-in clearfix">
-                          <div class="col-sm-9">
+                          <div class="col-sm-6">
+                              <label>Your name</label>
+                              <g:textField id="username"  name="username" value="${invitationCode?.username}" class="form-control" placeholder="Your Name" data-required="true"/>
+                            </div>
+                             <div class="col-sm-6">
+                              <label>Invitee name</label>
+                              <g:textField id="inviteename" name="inviteename" value="${invitationCode?.inviteename}" class="form-control" placeholder="Invitee Name" data-required="true"/>
+                            </div>
+                          <div class="col-sm-6">
                               <label>Email</label>
                               <g:field  name="emailTo" type="email"  value="${invitationCode?.emailTo}" class="form-control" placeholder="Enter email" data-required="true"/>
                             </div>
-                            <div class="col-sm-6">
-                              <label>Your name</label>
-                              <g:textField  name="username" value="${invitationCode?.username}" class="form-control" placeholder="Name" data-required="true"/>
-                            </div>
 							 <div class="col-sm-6">
 							 <label>Select User Role</label>
-							 <g:select id="role" name="role" class="form-control"  noSelection="${['null':'Please choose']}"  value="${invitationCode?.role}"
-							          from="${['Site User':'SiteUser','Publisher Admin': 'PublisherAdmin', 'Publisher User': 'PublisherUser', 'Admin': 'Admin','End User':'EndUser']}"
+							 <g:select id="role" name="role" class="form-control"  noSelection="${['null':'Please choose']}"  value="${invitationCode?.role}" onchange="setMessage(this.value);"
+							          from="${['SITE_USER':'SiteUser','ROLE_PUBLISHER_ADMIN': 'Publisher Admin', 'ROLE_PUBLISHER_USER': 'PublisherUser', 'ROLE_ADMIN': 'Admin','ROLE_END_USER':'EndUser']}"
 							          optionKey="key" optionValue="value" />
                            </div>
                           </div>
@@ -43,7 +79,7 @@
                           </div>
                           <div class="form-group">
                             <label>Message</label>
-                            <g:textArea name="message" value="${invitationCode?.message}" class="form-control" rows="2" data-minwords="1" data-required="true" placeholder="Type your message"/>
+                            <g:textArea id="message" name="message" value="${invitationCode?.message}" class="form-control" rows="2" data-minwords="1" data-required="true" placeholder="Type your message"/>
                           </div>
                       </div>
                       <footer class="panel-footer text-right bg-light lter">
@@ -52,7 +88,7 @@
                     </section>
                  </g:form>
                 </div>
-                <g:if test="${invitedUsers != null && !invitedUsers.isEmpty()}">
+                <g:if test="${invitedUsers}">
                  <div class="col-sm-6">
                  <section class="panel panel-default">
                      <header class="panel-heading">
@@ -77,9 +113,8 @@
                           <a href="#" class="thumb pull-right m-l">
                             <g:img uri="/images/avatar.jpg" class="img-circle"/>
                           </a>
-                          
                           <div class="clear">
-                            <a href="#" class="text-info">@${it.emailTo} <i class="icon-twitter"></i></a>
+                            <g:link action="inviteeProfile" controller="user" id="${it.id}" class="text-info">@${it.emailTo} <i class="icon-twitter"></i></g:link>
                             <small class="block text-muted">Invited as a</small>
                            <g:if test="${it.role != 'Publisher User'}">
                                <a href="#" class="${it.role == 'Publisher Admin' ? 'btn-success':'btn-twitter'} btn btn-xs m-t-xs">${it.role}</a>
@@ -97,3 +132,5 @@
                </g:if>
               </div>
             </section>
+	</body>
+</html>

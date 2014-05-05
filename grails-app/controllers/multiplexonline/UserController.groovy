@@ -14,12 +14,14 @@
  */
 package multiplexonline
 
+import java.rmi.activation.ActivationGroupDesc.CommandEnvironment;
+import java.util.Date;
+
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.util.GrailsNameUtils
-
 import multiplexonline.InvitationCode
 
 import org.springframework.dao.DataIntegrityViolationException
@@ -39,6 +41,7 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	def static currentUser
 	def mailService
 	def invitedUsers
+	def RegisterController
 
 	def create() {
 		def user = lookupUserClass().newInstance(params)
@@ -124,46 +127,57 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 		}
 	}
 
-	def search() {
+	/*def search() {
 		redirect(controller: "dashboard", action: "index")
-	}
+	}*/
 	
 	def showInvite(){
+		 currentUser = MOUserService.getCurrentUser()
+		 String currentUserName = currentUser.username
 		 invitationCodeInstance = new InvitationCode()
-		 invitedUsers = InvitationCode.list([sort: 'dateCreated',order:'desc',max: 8])
-		 render(view: "search", model: [
+		 invitedUsers = InvitationCode.findWhere(username:currentUserName)
+		 render(view: "invite", model: [
 			invitationCode: invitationCodeInstance,
 			invitedUsers : invitedUsers])
 	}
 	
 	def sendInvitation(){
 		invitationCodeInstance = new InvitationCode(params)
-		
+		 
+		String senderName = params.username
 		try{
 			 currentUser = MOUserService.getCurrentUser()
 			 invitationCodeInstance.emailFrom = currentUser.email
 			 invitationCodeInstance.dateCreated = new Date()
+			 invitationCodeInstance.username = currentUser.username
+			 invitationCodeInstance.save(flush: true)
+			 String url = generateLink('index', [t: invitationCodeInstance.token])
 				 mailService.sendMail {
 					 multipart true
 					 to invitationCodeInstance.emailTo
 					 from currentUser.email
-					  subject invitationCodeInstance.username+' Invite you as a '+invitationCodeInstance.role+' on LearnGrails'
+					  subject senderName+' Invite you as a '+invitationCodeInstance.role+' on LearnGrails'
 					 //html body.toString()
 					 //html g.render(template:"mymail",model:[user:currentUser])
 					 // body(view:"/user/mymail", model:[user:currentUser])
-					 html g.render( template: '/user/invitationmail',model:[emailTo:invitationCodeInstance.emailTo])
+					 html g.render( template: '/user/invitationmail',model:[emailTo:invitationCodeInstance.emailTo,url:url])
 					 inline 'logo', 'image/jpg', new File('./web-app/images/phone-1.png')
 					 //inline 'phone2', 'image/jpg', new File('./web-app/images/phone-2.png')
 				 }
-				 invitationCodeInstance.save(flush: true)
 		     }catch(Exception e){
 		        println(e)
 		     }		
 		  if(invitationCodeInstance.id>=1){
-			 render(view: "search", model: 
+			  if(invitedUsers == null){
+				  invitedUsers = InvitationCode.findByUsername(currentUser.username,sort: 'dateCreated',order:'desc',max: 8)
+			  }else{
+			      invitedUsers.add(invitationCodeInstance)
+			  }
+			 render(view: "invite", model: 
 				 [mailsent:true,
 					 emailTo:invitationCodeInstance.emailTo,
-					 invitationCode:new InvitationCode()]
+					 invitationCode:new InvitationCode(),
+					 invitedUsers : invitedUsers]
 				 )
 		 }
 	}
@@ -255,6 +269,15 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 
 		render text: jsonData as JSON, contentType: 'text/plain'
 	}
+	
+	/**
+	 *  method for to show invitee user profile data
+	 */
+	
+	def inviteeProfile(){
+		 
+		
+	}
 
 	protected void addRoles(user) {
 		String upperAuthorityFieldName = GrailsNameUtils.getClassName(
@@ -302,4 +325,10 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 	protected List sortedRoles() {
 		lookupRoleClass().list().sort { it.authority }
 	}
+	
+	protected String generateLink(String action, linkParams) {
+		createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
+				controller: 'signup', action: action,params: linkParams)
+	}
+	
 }
