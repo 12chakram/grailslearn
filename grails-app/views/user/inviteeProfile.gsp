@@ -8,7 +8,11 @@
    <section id="content">
           <section class="vbox">
             <header class="header bg-white b-b b-light">
-              <p>Widgets <small>(colorful)</small></p>
+              <ul class="breadcrumb no-border no-radius b-b b-light pull-in" style="height: 30px;">
+               		<li><a href="${createLink(uri: '/dashboard')}"><i class="fa fa-home text-success text"></i> Home</a></li>
+               		<li><a href="${createLink(uri: '/user/showInvite')}"><i class="fa fa-users text-success text"></i>Invite Users</a></li>
+               		<li class="active"><i class="fa fa-user"></i> Invitee Profile</li>
+              	</ul>
             </header>
             <section class="scrollable wrapper">              
               <div class="row">

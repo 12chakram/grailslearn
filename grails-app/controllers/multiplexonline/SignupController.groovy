@@ -223,7 +223,7 @@ class SignupController extends grails.plugin.springsecurity.ui.RegisterControlle
 	
 		protected String generateLink(String action, linkParams) {
 			createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
-					controller: 'register', action: action,
+					controller: 'signup', action: action,
 					params: linkParams)
 		}
 	

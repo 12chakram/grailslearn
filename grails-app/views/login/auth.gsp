@@ -99,7 +99,7 @@
   <!-- Modal -->
           <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal-form" class="modal fade">
               <div class="modal-dialog" style="padding-top:154px !important;">
-               <g:formRemote   url="[controller: 'register', action:'forgotPassword']" name="forgotPassword" update="forsucessmsg" 
+               <g:formRemote   url="[controller: 'signup', action:'forgotPassword']" name="forgotPassword" update="forsucessmsg" 
                id="forgotPassword">
                   <div class="modal-content" id="modalcontent">
                       <div class="modal-header">

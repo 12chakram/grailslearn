@@ -2,41 +2,39 @@
 <%@ page import="multiplexonline.InvitationCode" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="portal/mainh">
-		<g:set var="entityName" value="${message(code: 'media.label', default: 'Media')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-		<script type="text/javascript">
-			function setMessage(selectdrole){
+<head>
+<meta name="layout" content="portal/mainh">
+<g:set var="entityName" value="${message(code: 'media.label', default: 'Media')}" />
+<title><g:message code="default.list.label" args="[entityName]" /></title>
+<script type="text/javascript">
+function setMessage(selectdrole){
 
-			if(selectdrole == 'SITE_USER'){
-				selectdrole = 'Site User'
-			 }
-			 else if(selectdrole == 'ROLE_PUBLISHER_ADMIN'){
-				selectdrole = 'Publisher Admin'
-			 }
-			 else if(selectdrole == 'ROLE_PUBLISHER_USER'){
-					selectdrole = 'Publisher User'
-		      }
-			 else if(selectdrole == 'ROLE_ADMIN'){
-					selectdrole = 'Admin User'
-		      }
-		      else{
-		    	  selectdrole  = 'End User'
-			   }
-			  var yourname = $("#username").val().toUpperCase();
-			  var msg = yourname +" Invite you as a " + selectdrole.toUpperCase() + " on Grails Learn";
-			  document.getElementById("message").value=msg;
-			}
-		</script>
-	</head>
+if(selectdrole == 'SITE_USER'){
+selectdrole = 'Site User'
+}
+else if(selectdrole == 'ROLE_PUBLISHER_ADMIN'){
+selectdrole = 'Publisher Admin'
+}
+else if(selectdrole == 'ROLE_PUBLISHER_USER'){
+selectdrole = 'Publisher User'
+}
+else if(selectdrole == 'ROLE_ADMIN'){
+selectdrole = 'Admin User'
+}
+else{
+selectdrole = 'End User'
+}
+var yourname = $("#username").val().toUpperCase();
+var msg = yourname +" Invite you as a " + selectdrole.toUpperCase() + " on Grails Learn";
+document.getElementById("message").value=msg;
+}
+</script>
+</head>
  <body>
-	 <section class="scrollable padder">
+<section class="scrollable padder">
               <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
-                <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#">UI kit</a></li>
-                <li><a href="#">Form</a></li>
-                <li class="active">Validation</li>
+                <li><a href="${createLink(uri: '/dashboard')}"><i class="fa fa-home text-success text"></i> Home</a></li>
+                <li class="active"><i class="fa fa-users"></i>Invite Users</li>
               </ul>
               <g:if test="${mailsent}">
                <div class="alert alert-success">
@@ -52,34 +50,34 @@
                         <span class="h4">Contact</span>
                       </header>
                       <div class="panel-body">
-                        <p class="text-muted">Need support? please fill the fields below.</p>                        
+                        <p class="text-muted">Need support? please fill the fields below.</p>
                           <div class="form-group pull-in clearfix">
                           <div class="col-sm-6">
                               <label>Your name</label>
-                              <g:textField id="username"  name="username" value="${invitationCode?.username}" class="form-control" placeholder="Your Name" data-required="true"/>
+                              <g:textField id="username" name="username" value="${invitationCode?.username}" class="form-control" placeholder="Your Name" data-required="true" data-notblank="true"  data-minlength="3"/>
                             </div>
                              <div class="col-sm-6">
                               <label>Invitee name</label>
-                              <g:textField id="inviteename" name="inviteename" value="${invitationCode?.inviteename}" class="form-control" placeholder="Invitee Name" data-required="true"/>
+                              <g:textField id="inviteename" name="inviteename" value="${invitationCode?.inviteename}" class="form-control" placeholder="Invitee Name" data-required="true" data-notblank="true"  data-minlength="6"/>
                             </div>
                           <div class="col-sm-6">
                               <label>Email</label>
-                              <g:field  name="emailTo" type="email"  value="${invitationCode?.emailTo}" class="form-control" placeholder="Enter email" data-required="true"/>
+                              <g:field name="emailTo" type="email" value="${invitationCode?.emailTo}" class="form-control" placeholder="Enter email" data-required="true" data-notblank="true"/>
                             </div>
-							 <div class="col-sm-6">
-							 <label>Select User Role</label>
-							 <g:select id="role" name="role" class="form-control"  noSelection="${['null':'Please choose']}"  value="${invitationCode?.role}" onchange="setMessage(this.value);"
-							          from="${['SITE_USER':'SiteUser','ROLE_PUBLISHER_ADMIN': 'Publisher Admin', 'ROLE_PUBLISHER_USER': 'PublisherUser', 'ROLE_ADMIN': 'Admin','ROLE_END_USER':'EndUser']}"
-							          optionKey="key" optionValue="value" />
+							<div class="col-sm-6">
+							<label>Select User Role</label>
+							<g:select id="role" name="role" class="form-control" noSelection="${['':'Please choose']}" value="${invitationCode?.role}" onchange="setMessage(this.value);"  data-required="true"
+							from="${['SITE_USER':'SiteUser','ROLE_PUBLISHER_ADMIN': 'Publisher Admin', 'ROLE_PUBLISHER_USER': 'PublisherUser', 'ROLE_ADMIN': 'Admin','ROLE_END_USER':'EndUser']}"
+							optionKey="key" optionValue="value" />
                            </div>
                           </div>
                           <div class="form-group">
                             <label>Your website</label>
-                            <g:textField name="website"  value="${invitationCode?.website}" data-type="url"  data-required="true" class="form-control" placeholder="Your website url"/>
+                            <g:textField name="website" value="${invitationCode?.website}" data-type="url" data-required="true" class="form-control" placeholder="Your website url" data-notblank="true"/>
                           </div>
                           <div class="form-group">
                             <label>Message</label>
-                            <g:textArea id="message" name="message" value="${invitationCode?.message}" class="form-control" rows="2" data-minwords="1" data-required="true" placeholder="Type your message"/>
+                            <g:textArea id="message" name="message" value="${invitationCode?.message}" class="form-control" rows="2" data-minwords="1" data-required="true" data-notblank="true" placeholder="Type your message"/>
                           </div>
                       </div>
                       <footer class="panel-footer text-right bg-light lter">
@@ -93,8 +91,9 @@
                  <section class="panel panel-default">
                      <header class="panel-heading">
                         <span class="h4">Recent Invited Users</span>
+                        <g:link action="allinvitees" class="label bg-info" style="float:right;">View All</g:link>
                       </header>
-                    <section class="panel-body slim-scroll" data-height="400px">
+                    <section class="panel-body slim-scroll" data-height="430px">
                     <g:each in="${invitedUsers}"><%--
                       <article class="media" style="${it.id==1 ?"background-color: #89CC97":"background-color: #3FB4B5"}">
                         <span class="pull-left thumb-sm"><g:img uri="/images/avatar_default.jpg" class="img-circle"/></span>
@@ -116,11 +115,24 @@
                           <div class="clear">
                             <g:link action="inviteeProfile" controller="user" id="${it.id}" class="text-info">@${it.emailTo} <i class="icon-twitter"></i></g:link>
                             <small class="block text-muted">Invited as a</small>
-                           <g:if test="${it.role != 'Publisher User'}">
-                               <a href="#" class="${it.role == 'Publisher Admin' ? 'btn-success':'btn-twitter'} btn btn-xs m-t-xs">${it.role}</a>
-                           </g:if> 
+                            
+                            <g:if test="${it.role == 'ROLE_ADMIN'}">
+                               <a href="#" class=" btn-success btn btn-xs m-t-xs">${it.role.replace("ROLE_", " ").replace("_", " ")}</a>
+                           </g:if>
+                           
+                            <g:elseif test="${it.role == 'SITE_USER'}">
+                               <a href="#" class="btn-info btn btn-xs m-t-xs">${it.role.replace("ROLE_", " ").replace("_", " ")}</a>
+                           </g:elseif>
+                           
+                            <g:elseif test="${it.role == 'ROLE_PUBLISHER_ADMIN'}">
+                               <a href="#" class="btn-warning btn btn-xs m-t-xs">${it.role.replace("ROLE_", " ").replace("_", " ")}</a>
+                            </g:elseif>
+                            
+                           <g:elseif test="${it.role  == 'ROLE_PUBLISHER_USER'}">
+                               <a href="#" class="btn-twitter btn btn-xs m-t-xs">${it.role.replace("ROLE_", " ").replace("_", " ")}</a>
+                           </g:elseif>
                            <g:else>
-                             <a href="#" class="btn btn-xs m-t-xs btn-warning">${it.role}</a>
+                             <a href="#" class="btn-dark btn btn-xs m-t-xs">${it.role.replace("ROLE_"," ").replace("_", " ")}</a>
                              </g:else>
                           </div>
                         </div>
@@ -132,5 +144,5 @@
                </g:if>
               </div>
             </section>
-	</body>
+</body>
 </html>
