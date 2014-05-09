@@ -174,7 +174,8 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
 				invitedUsers = InvitationCode.findAll("from InvitationCode as i where i.username = :username",
 					[username :currentUser.username],[max:9,sort:'dateCreated',order:'aesc'])
 			}else{
-				invitedUsers.add(invitationCodeInstance)
+				invitedUsers.add(0,invitationCodeInstance)
+			   //invitedUsers.putAt(invitationCodeInstance)
 			}
 			render(view: "invite", model:
 			[mailsent:true,

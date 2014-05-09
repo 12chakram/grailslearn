@@ -99,6 +99,13 @@
 	.m-t-lg {
 		margin-top: 0px !important;
 	}
+	.required{
+	 color: red !important;
+	}
+	
+	 .type{
+	  color: red !important;
+	 }
 	</style>
 </head>
 <body class="" id="signinbody">
@@ -118,7 +125,12 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">Your email address</label>
-								   <input type="email" name="email" value="${command?.email}" class="form-control"  placeholder="test@example.com" data-type="email" data-required="true">
+								<g:if test="${command.email==null || command.email==''}">
+								   <input type="email" name="email" value="${command?.email}" class="form-control" placeholder="test@example.com" data-type="email" data-required="true">
+								</g:if>
+								<g:else>
+									 <input type="email" name="email" value="${command?.email}" class="form-control"  readonly="readonly" placeholder="test@example.com" data-type="email" data-required="true">
+								</g:else>
 							</div>
 							<div class="form-group pull-in clearfix">
 							     <div class="col-sm-6">
@@ -138,7 +150,7 @@
 							 <div class="col-sm-6">
 								<label class="control-label">Date of Birth</label> 
 								 <calendar:datePicker name="dob" id="dob" value="${command?.dob}" oSelection="['':'-Choose-']" 
-								 precision="day" years="1970,2008" data-required="true" />
+								 precision="day" years="1970,2008" data-required="true"/>
 							</div>
 							</div>
 							<div class="form-group pull-in clearfix">
@@ -146,10 +158,9 @@
 								<label class="control-label">Please enter below Text</label> 
 								 <g:textField name="captcha"  placeholder="Password" class="form-control" data-required="true"/>
 							</div>
-							 <div class="col-sm-6">
+							<div class="col-sm-6">
 								<br/>
-								<img src="${createLink(controller: 'simpleCaptcha', action: 'captcha')}" style="width: 40%;"/>
-									
+								<img src="${createLink(controller: 'simpleCaptcha', action: 'captcha')}" style="width: 40%;"/>	
 							</div>
 							</div>
 							  <div class="form-group">
@@ -183,7 +194,7 @@
 									<i class="">
 							           <fb:login-button scope="email,publish_stream" onlogin="facebookLogin();" size="large" style="height:30px;">
 							              <g:message code="Sign up with"/>
-							            </fb:login-button>
+							           </fb:login-button>
 							          </i>
 								</div>
 								<div class="col-sm-6 text-center">

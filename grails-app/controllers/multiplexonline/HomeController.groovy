@@ -21,9 +21,7 @@ class HomeController {
 			String role = roles.getAt(0).toString()
 			
 			if(role.equals("ROLE_ADMIN")){
-				
-				redirect(controller: "user", action: "invite")
-				
+				redirect(controller: "dashboard", action: "index")
 			}else if(role.equals("ROLE_PUBLISHER_ADMIN")){
 				redirect(controller: "movie", action: "index")
 			}

@@ -5,7 +5,46 @@
 		<meta name="layout" content="portal/mainh">
 		<g:set var="entityName" value="${message(code: 'media.label', default: 'Media')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+	
+	<%--<style type="text/css">
+		.paginateButtons {
+			margin: 3px 0px 3px 0px;
+		}
+		.pagination a {
+			padding: 2px 4px 2px 4px;
+			background-color: #A4A4A4;
+			border: 1px solid #EEEEEE;
+			text-decoration: none;
+			font-size: 10pt;
+			font-variant: small-caps;
+			color: #EEEEEE;
+		}
+		.pagination a:hover {
+			text-decoration: underline;
+			background-color: #888888;
+			border: 1px solid #AA4444;
+			color: #FFFFFF;
+		}
+     </style>
+	--%>
+	
+	<style type="text/css">
+	
+	  .pagination {
+		  margin: 0px 0 !important;
+	  }
+	  .currentStep {
+        background-color: #8EC165 !important;
+        border-color: #8EC165 !important;
+        color: #FFFFFF !important !important;
+    }
+    .fa {
+       display: inline !important;
+    }
+	</style>
+	
 	</head>
+	
 	<body>
 	
 	<section id="content">
@@ -59,13 +98,13 @@
                     <thead>
                       <tr>
                       	<th width="10"></th>
-                        <th><i class="fa fa-info-circle text"></i>  Name</th>
-                        <th width="30">Type</th>
-                        <th width="30"><i class="fa fa-volume-off text"></i></th>
-                        <th width="30"><i class="fa fa-clock-o text"></i></th>
+                        <th><i class="fa fa-info-circle text"></i>Name</th>
+                        <th width="10">Type</th>
+                        <th width="30"><i class="fa fa-volume-off text"></i>Language</th>
+                        <th width="35"><i class="fa fa-clock-o"></i>Duration</th>
                         <th width="30"><i class="fa fa-picture-o text"></i></th>
-                        <th width="30"><span class="entypo-users"></span>
-                        <th width="30"><i class="fa fa-thumbs-o-up text"></i></th>
+                        <th width="40"><i class="fa fa-users"></i>Cast&Crew</th>
+                        <th width="30"><i class="fa fa-thumbs-o-up text"></i>Published</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -97,27 +136,27 @@
                 </div>
                 <footer class="panel-footer">
                   <div class="row">
-                    <div class="col-sm-6 hidden-xs row">
-                        <div><i class="fa fa-volume-off text"> Language</i></div>
-                        <div><i class="fa fa-clock-o text"></i> Duration</div>
-                        <div><i class="entypo-users"></i> Cast & Crew</div>
-                        <div><i class="fa fa-thumbs-o-up text"></i> Published</div>          
+                  <div>
+                    <div class="col-sm-4">
+                      <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of ${mediaInstanceCount} items</small>
                     </div>
-                    <div class="col-sm-4 text-center">
-                      <%--<small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of ${mediaInstanceCount} items</small>
-                    --%></div>
-                    <div class="col-sm-4 text-right text-center-xs">                
-                        <div class="pagination">
-							<% 
-								def parameters = new HashMap();
-								parameters.putAt("language", pageScope.getProperty('language'))
-								parameters.putAt("releaseYear", pageScope.getProperty('releaseYear'))
-								parameters.putAt("title", pageScope.getProperty('title'))
-							 %>
-							<g:paginate params="${parameters}" total="${mediaInstanceCount ?: 0}" />
+                    <div class="col-sm-6 text-right text-center-xs" style="width: 60% !important;">
+                       <div class="pagination">                
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                         <li>
+								<% 
+									def parameters = new HashMap();
+									parameters.putAt("language", pageScope.getProperty('language'))
+									parameters.putAt("releaseYear", pageScope.getProperty('releaseYear'))
+									parameters.putAt("title", pageScope.getProperty('title'))
+								 %>
+								<g:paginate params="${parameters}" total="${mediaInstanceCount ?: 0}"/>
+							</li>
+							</ul>
 						</div>
+						</div>
+					  </div>
                     </div>
-                  </div>
                 </footer>
               </section>
 			</section>
