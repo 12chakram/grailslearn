@@ -1,0 +1,1 @@
+<li><g:link controller="${song?.controllerName}" action="show" id="${song?.id}"><i class="fa fa-music text-success text" ></i> ${song?.name}</g:link></li>
